@@ -1,0 +1,138 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V7.40.3.8902/W32 for ARM        29/Feb/2016  22:11:43
+# Copyright 1999-2015 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\projects\PWM\PWM.c
+#    Command line =  
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\projects\PWM\PWM.c
+#        -D IAR -D FREEDOM -lCN
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\FLASH_32KB\List\
+#        -o
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\FLASH_32KB\Obj\
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M0+ -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench
+#        7.2\arm\INC\c\DLib_Config_Normal.h" -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\projects\PWM\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\common\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\cpu\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\cpu\headers\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\lptmr\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\mcg\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\pmc\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\rcm\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\smc\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\uart\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\wdog\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\cmp\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\platforms\
+#        -I C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\tpm\
+#        -Ol --use_c++_inline
+#    List file    =  
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\FLASH_32KB\List\PWM.lst
+#    Object file  =  
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\FLASH_32KB\Obj\PWM.o
+#
+###############################################################################
+
+C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\projects\PWM\PWM.c
+      1          /*
+      2           * File:		  PWM.c
+      3           * Purpose:		Demo PWM Funciton
+      4           *
+      5           */
+      6          
+      7          #include "common.h"
+      8          #include "tpm.h"
+      9          
+     10          /********************************************************************/
+
+   \                                 In section .text, align 4, keep-with-next
+     11          int main (void)
+     12          {      
+   \                     main: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+     13            printf("\nRunning the PWM project.\n");
+   \   00000002   0x4804             LDR      R0,??main_0
+   \   00000004   0x.... 0x....      BL       printf
+     14                  
+     15            TPM_PORT_Init();
+   \   00000008   0x.... 0x....      BL       TPM_PORT_Init
+     16            TPM0_Init();
+   \   0000000C   0x.... 0x....      BL       TPM0_Init
+     17          
+     18          	while(1)
+   \                     ??main_1: (+1)
+   \   00000010   0xE7FE             B        ??main_1
+   \   00000012   0xBF00             Nop      
+   \                     ??main_0:
+   \   00000014   0x........         DC32     ?_0
+     19          	{
+     20          
+     21          	} 
+     22          }
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \   00000000   0x0A 0x52          DC8 "\012Running the PWM project.\012"
+   \              0x75 0x6E    
+   \              0x6E 0x69    
+   \              0x6E 0x67    
+   \              0x20 0x74    
+   \              0x68 0x65    
+   \              0x20 0x50    
+   \              0x57 0x4D    
+   \              0x20 0x70    
+   \              0x72 0x6F    
+   \              0x6A 0x65    
+   \              0x63 0x74    
+   \              0x2E 0x0A    
+   \              0x00         
+   \   0000001B   0x00               DC8 0
+     23          /********************************************************************/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   main
+         8   -> TPM0_Init
+         8   -> TPM_PORT_Init
+         8   -> printf
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+      28  ?_0
+      24  main
+
+ 
+ 28 bytes in section .rodata
+ 24 bytes in section .text
+ 
+ 24 bytes of CODE  memory
+ 28 bytes of CONST memory
+
+Errors: none
+Warnings: 1

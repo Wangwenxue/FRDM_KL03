@@ -1,0 +1,12 @@
+.\pwm.o: ..\..\..\src\projects\PWM\PWM.c
+.\pwm.o: ..\..\..\src\common\common.h
+.\pwm.o: ..\..\..\src\projects\platinum\isr.h
+.\pwm.o: ..\..\..\src\cpu\arm_cm0.h
+.\pwm.o: ..\..\..\src\platforms\freedom.h
+.\pwm.o: ..\..\..\src\drivers\mcg\mcg_lite.h
+.\pwm.o: ..\..\..\src\cpu\headers\MKL03Z4.h
+.\pwm.o: C:\Freescale\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\pwm.o: ..\..\..\src\common\assert.h
+.\pwm.o: ..\..\..\src\common\io.h
+.\pwm.o: ..\..\..\src\common\stdlib.h
+.\pwm.o: ..\..\..\src\drivers\tpm\tpm.h

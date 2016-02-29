@@ -1,0 +1,11 @@
+.\assert.o: ..\..\..\src\common\assert.c
+.\assert.o: ..\..\..\src\common\common.h
+.\assert.o: ..\..\..\src\projects\platinum\isr.h
+.\assert.o: ..\..\..\src\cpu\arm_cm0.h
+.\assert.o: ..\..\..\src\platforms\freedom.h
+.\assert.o: ..\..\..\src\drivers\mcg\mcg_lite.h
+.\assert.o: ..\..\..\src\cpu\headers\MKL03Z4.h
+.\assert.o: C:\Freescale\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\assert.o: ..\..\..\src\common\assert.h
+.\assert.o: ..\..\..\src\common\io.h
+.\assert.o: ..\..\..\src\common\stdlib.h

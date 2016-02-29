@@ -1,0 +1,222 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V7.40.3.8902/W32 for ARM        29/Feb/2016  22:11:45
+# Copyright 1999-2015 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\drivers\tpm\tpm.c
+#    Command line =  
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\drivers\tpm\tpm.c
+#        -D IAR -D FREEDOM -lCN
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\FLASH_32KB\List\
+#        -o
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\FLASH_32KB\Obj\
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M0+ -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench
+#        7.2\arm\INC\c\DLib_Config_Normal.h" -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\projects\PWM\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\common\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\cpu\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\cpu\headers\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\lptmr\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\mcg\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\pmc\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\rcm\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\smc\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\uart\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\wdog\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\cmp\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\platforms\
+#        -I C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\
+#        -I
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\..\..\..\src\drivers\tpm\
+#        -Ol --use_c++_inline
+#    List file    =  
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\FLASH_32KB\List\tpm.lst
+#    Object file  =  
+#        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\PWM\FLASH_32KB\Obj\tpm.o
+#
+###############################################################################
+
+C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\drivers\tpm\tpm.c
+      1          /*
+      2           * File:        tpm.c
+      3           * Purpose:     Provide common tpm routines for PWM or capture
+      4           *
+      5           * Notes: jinhui      
+      6           *              
+      7           */
+      8          #include "common.h"
+      9          #include "tpm.h"
+     10          
+     11          /***************************************************************************//*!
+     12           * @brief   PORT module initialization.
+     13           ******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     14          void TPM_PORT_Init(void)
+     15          {
+     16          	SIM_SCGC5 |= SIM_SCGC5_PORTA_MASK| SIM_SCGC5_PORTB_MASK; //enable port clocks
+   \                     TPM_PORT_Init: (+1)
+   \   00000000   0x....             LDR      R0,??DataTable1  ;; 0x40048038
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0x21C0             MOVS     R1,#+192
+   \   00000006   0x00C9             LSLS     R1,R1,#+3        ;; #+1536
+   \   00000008   0x4301             ORRS     R1,R1,R0
+   \   0000000A   0x....             LDR      R0,??DataTable1  ;; 0x40048038
+   \   0000000C   0x6001             STR      R1,[R0, #+0]
+     17          
+     18            PORTB_PCR11 = PORT_PCR_ISF_MASK |PORT_PCR_MUX(0x2)|PORT_PCR_DSE_MASK;//select PA6 as pwm output
+   \   0000000E   0x....             LDR      R0,??DataTable1_1  ;; 0x1000240
+   \   00000010   0x....             LDR      R1,??DataTable1_2  ;; 0x4004a02c
+   \   00000012   0x6008             STR      R0,[R1, #+0]
+     19          }
+   \   00000014   0x4770             BX       LR               ;; return
+     20          
+     21          /***************************************************************************//*!
+     22           * @brief   TPM0 module initialization.
+     23           ******************************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     24          void TPM0_Init(void)
+     25          {
+     26          	int i;
+     27            SIM_SOPT2 |= SIM_SOPT2_TPMSRC(1);	  //48MHz as tpm clock source
+   \                     TPM0_Init: (+1)
+   \   00000000   0x....             LDR      R0,??DataTable1_3  ;; 0x40048004
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0x2180             MOVS     R1,#+128
+   \   00000006   0x0449             LSLS     R1,R1,#+17       ;; #+16777216
+   \   00000008   0x4301             ORRS     R1,R1,R0
+   \   0000000A   0x....             LDR      R0,??DataTable1_3  ;; 0x40048004
+   \   0000000C   0x6001             STR      R1,[R0, #+0]
+     28            SIM_SCGC6 |= SIM_SCGC6_TPM0_MASK| SIM_SCGC6_TPM1_MASK;   //enable tpm clock
+   \   0000000E   0x....             LDR      R0,??DataTable1_4  ;; 0x4004803c
+   \   00000010   0x6800             LDR      R0,[R0, #+0]
+   \   00000012   0x21C0             MOVS     R1,#+192
+   \   00000014   0x0489             LSLS     R1,R1,#+18       ;; #+50331648
+   \   00000016   0x4301             ORRS     R1,R1,R0
+   \   00000018   0x....             LDR      R0,??DataTable1_4  ;; 0x4004803c
+   \   0000001A   0x6001             STR      R1,[R0, #+0]
+     29          
+     30            TPM0_CNT = 0;
+   \   0000001C   0x2000             MOVS     R0,#+0
+   \   0000001E   0x....             LDR      R1,??DataTable1_5  ;; 0x40038004
+   \   00000020   0x6008             STR      R0,[R1, #+0]
+     31            TPM0_MOD = 0x4B00;
+   \   00000022   0x2096             MOVS     R0,#+150
+   \   00000024   0x01C0             LSLS     R0,R0,#+7        ;; #+19200
+   \   00000026   0x....             LDR      R1,??DataTable1_6  ;; 0x40038008
+   \   00000028   0x6008             STR      R0,[R1, #+0]
+     32          	
+     33          	TPM0_C0SC |= (TPM_CnSC_ELSB_MASK | TPM_CnSC_MSB_MASK);
+   \   0000002A   0x....             LDR      R0,??DataTable1_7  ;; 0x4003800c
+   \   0000002C   0x6800             LDR      R0,[R0, #+0]
+   \   0000002E   0x2128             MOVS     R1,#+40
+   \   00000030   0x4301             ORRS     R1,R1,R0
+   \   00000032   0x....             LDR      R0,??DataTable1_7  ;; 0x4003800c
+   \   00000034   0x6001             STR      R1,[R0, #+0]
+     34          	
+     35            TPM0_SC = TPM_SC_TOIE_MASK|TPM_SC_CMOD(1);
+   \   00000036   0x2048             MOVS     R0,#+72
+   \   00000038   0x....             LDR      R1,??DataTable1_8  ;; 0x40038000
+   \   0000003A   0x6008             STR      R0,[R1, #+0]
+     36           
+     37          	
+     38            TPM0_C0V = 0x2580;
+   \   0000003C   0x2096             MOVS     R0,#+150
+   \   0000003E   0x0180             LSLS     R0,R0,#+6        ;; #+9600
+   \   00000040   0x....             LDR      R1,??DataTable1_9  ;; 0x40038010
+   \   00000042   0x6008             STR      R0,[R1, #+0]
+     39          }
+   \   00000044   0x4770             BX       LR               ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1:
+   \   00000000   0x40048038         DC32     0x40048038
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_1:
+   \   00000000   0x01000240         DC32     0x1000240
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_2:
+   \   00000000   0x4004A02C         DC32     0x4004a02c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_3:
+   \   00000000   0x40048004         DC32     0x40048004
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_4:
+   \   00000000   0x4004803C         DC32     0x4004803c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_5:
+   \   00000000   0x40038004         DC32     0x40038004
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_6:
+   \   00000000   0x40038008         DC32     0x40038008
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_7:
+   \   00000000   0x4003800C         DC32     0x4003800c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_8:
+   \   00000000   0x40038000         DC32     0x40038000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable1_9:
+   \   00000000   0x40038010         DC32     0x40038010
+     40          
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       0   TPM0_Init
+       0   TPM_PORT_Init
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable1
+       4  ??DataTable1_1
+       4  ??DataTable1_2
+       4  ??DataTable1_3
+       4  ??DataTable1_4
+       4  ??DataTable1_5
+       4  ??DataTable1_6
+       4  ??DataTable1_7
+       4  ??DataTable1_8
+       4  ??DataTable1_9
+      70  TPM0_Init
+      22  TPM_PORT_Init
+
+ 
+ 132 bytes in section .text
+ 
+ 132 bytes of CODE memory
+
+Errors: none
+Warnings: 2

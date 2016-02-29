@@ -1,0 +1,12 @@
+.\rcm.o: ..\..\..\src\drivers\rcm\rcm.c
+.\rcm.o: ..\..\..\src\common\common.h
+.\rcm.o: ..\..\..\src\projects\platinum\isr.h
+.\rcm.o: ..\..\..\src\cpu\arm_cm0.h
+.\rcm.o: ..\..\..\src\platforms\freedom.h
+.\rcm.o: ..\..\..\src\drivers\mcg\mcg_lite.h
+.\rcm.o: ..\..\..\src\cpu\headers\MKL03Z4.h
+.\rcm.o: C:\Freescale\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\rcm.o: ..\..\..\src\common\assert.h
+.\rcm.o: ..\..\..\src\common\io.h
+.\rcm.o: ..\..\..\src\common\stdlib.h
+.\rcm.o: ..\..\..\src\drivers\rcm\rcm.h

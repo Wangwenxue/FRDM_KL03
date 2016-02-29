@@ -1,0 +1,13 @@
+.\serial.o: ..\..\..\src\drivers\uart\Serial.c
+.\serial.o: ..\..\..\src\common\common.h
+.\serial.o: ..\..\..\src\projects\platinum\isr.h
+.\serial.o: ..\..\..\src\cpu\arm_cm0.h
+.\serial.o: ..\..\..\src\platforms\freedom.h
+.\serial.o: ..\..\..\src\drivers\mcg\mcg_lite.h
+.\serial.o: ..\..\..\src\cpu\headers\MKL03Z4.h
+.\serial.o: C:\Freescale\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\serial.o: ..\..\..\src\common\assert.h
+.\serial.o: ..\..\..\src\common\io.h
+.\serial.o: ..\..\..\src\common\stdlib.h
+.\serial.o: ..\..\..\src\drivers\uart\Serial.h
+.\serial.o: ..\..\..\src\drivers\uart\uart.h

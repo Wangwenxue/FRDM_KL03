@@ -1,0 +1,11 @@
+.\mcg_lite.o: ..\..\..\src\drivers\mcg\mcg_lite.c
+.\mcg_lite.o: ..\..\..\src\common\common.h
+.\mcg_lite.o: ..\..\..\src\projects\platinum\isr.h
+.\mcg_lite.o: ..\..\..\src\cpu\arm_cm0.h
+.\mcg_lite.o: ..\..\..\src\platforms\freedom.h
+.\mcg_lite.o: ..\..\..\src\drivers\mcg\mcg_lite.h
+.\mcg_lite.o: ..\..\..\src\cpu\headers\MKL03Z4.h
+.\mcg_lite.o: C:\Freescale\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\mcg_lite.o: ..\..\..\src\common\assert.h
+.\mcg_lite.o: ..\..\..\src\common\io.h
+.\mcg_lite.o: ..\..\..\src\common\stdlib.h

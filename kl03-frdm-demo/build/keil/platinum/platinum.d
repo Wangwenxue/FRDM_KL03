@@ -1,0 +1,11 @@
+.\platinum.o: ..\..\..\src\projects\platinum\platinum.c
+.\platinum.o: ..\..\..\src\common\common.h
+.\platinum.o: ..\..\..\src\projects\platinum\isr.h
+.\platinum.o: ..\..\..\src\cpu\arm_cm0.h
+.\platinum.o: ..\..\..\src\platforms\freedom.h
+.\platinum.o: ..\..\..\src\drivers\mcg\mcg_lite.h
+.\platinum.o: ..\..\..\src\cpu\headers\MKL03Z4.h
+.\platinum.o: C:\Freescale\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\platinum.o: ..\..\..\src\common\assert.h
+.\platinum.o: ..\..\..\src\common\io.h
+.\platinum.o: ..\..\..\src\common\stdlib.h

@@ -1,0 +1,11 @@
+.\alloc.o: ..\..\..\src\common\alloc.c
+.\alloc.o: ..\..\..\src\common\common.h
+.\alloc.o: ..\..\..\src\projects\platinum\isr.h
+.\alloc.o: ..\..\..\src\cpu\arm_cm0.h
+.\alloc.o: ..\..\..\src\platforms\freedom.h
+.\alloc.o: ..\..\..\src\drivers\mcg\mcg_lite.h
+.\alloc.o: ..\..\..\src\cpu\headers\MKL03Z4.h
+.\alloc.o: C:\Freescale\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\alloc.o: ..\..\..\src\common\assert.h
+.\alloc.o: ..\..\..\src\common\io.h
+.\alloc.o: ..\..\..\src\common\stdlib.h
