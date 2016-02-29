@@ -25,7 +25,11 @@ if not "%1" == "" goto debugFile
 
 @echo on 
 
+<<<<<<< HEAD
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\settings\platinum_freedom.FLASH_32KB.general.xcl" --backend -f "C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\settings\platinum_freedom.FLASH_32KB.driver.xcl" 
+=======
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\settings\platinum_freedom.FLASH_32KB.general.xcl" --backend -f "C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\settings\platinum_freedom.FLASH_32KB.driver.xcl" 
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 
 @echo off 
 goto end 
@@ -34,7 +38,11 @@ goto end
 
 @echo on 
 
+<<<<<<< HEAD
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\settings\platinum_freedom.FLASH_32KB.general.xcl" "--debug_file=%1" --backend -f "C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\settings\platinum_freedom.FLASH_32KB.driver.xcl" 
+=======
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\common\bin\cspybat" -f "C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\settings\platinum_freedom.FLASH_32KB.general.xcl" "--debug_file=%1" --backend -f "C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\settings\platinum_freedom.FLASH_32KB.driver.xcl" 
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 
 @echo off 
 :end

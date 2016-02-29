@@ -641,11 +641,19 @@ ARM Macro Assembler    Page 10
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
 work --depend=.\startup_mkl03z4.d -o.\startup_mkl03z4.o -IC:\Users\b51443\Deskt
+<<<<<<< HEAD
 op\FRDM_KL03Z\kl03-frdm-demo\build\keil\platinum\RTE -IC:\Freescale\Keil_v5\ARM
 \PACK\Keil\Kinetis_KLxx_DFP\1.6.0\Device\Include -IC:\Freescale\Keil_v5\ARM\CMS
 IS\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 
 515" --predefine="MKL03Z32xxx4 SETA 1" --list=.\startup_mkl03z4.lst ..\startup_
 s\startup_MKL03Z4.s
+=======
+op\kl03-frdm-demo\kl03-frdm-demo\build\keil\platinum\RTE -IC:\Freescale\Keil_v5
+\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.6.0\Device\Include -IC:\Freescale\Keil_v5\ARM
+\CMSIS\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION S
+ETA 515" --predefine="MKL03Z32xxx4 SETA 1" --list=.\startup_mkl03z4.lst ..\star
+tup_s\startup_MKL03Z4.s
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 
 
 

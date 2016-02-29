@@ -183,7 +183,11 @@
 
   <Group>
     <GroupName>project</GroupName>
+<<<<<<< HEAD
     <tvExp>1</tvExp>
+=======
+    <tvExp>0</tvExp>
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

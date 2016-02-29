@@ -1,11 +1,16 @@
 ###############################################################################
 #
+<<<<<<< HEAD
 # IAR ANSI C/C++ Compiler V7.40.3.8902/W32 for ARM        29/Feb/2016  22:04:40
+=======
+# IAR ANSI C/C++ Compiler V7.40.3.8902/W32 for ARM        22/Feb/2016  16:12:26
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 # Copyright 1999-2015 IAR Systems AB.
 #
 #    Cpu mode     =  thumb
 #    Endian       =  little
 #    Source file  =  
+<<<<<<< HEAD
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\common\startup.c
 #    Command line =  
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\common\startup.c
@@ -13,11 +18,21 @@
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\
 #        -o
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\
+=======
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\common\startup.c
+#    Command line =  
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\common\startup.c
+#        -D IAR -D FREEDOM -lCN
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\
+#        -o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 #        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
 #        --no_clustering --no_scheduling --debug --endian=little
 #        --cpu=Cortex-M0+ -e --fpu=None --dlib_config "C:\Program Files
 #        (x86)\IAR Systems\Embedded Workbench
 #        7.2\arm\INC\c\DLib_Config_Normal.h" -I
+<<<<<<< HEAD
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\..\..\..\src\projects\platinum\
 #        -I
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\..\..\..\src\common\
@@ -54,6 +69,44 @@
 ###############################################################################
 
 C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\common\startup.c
+=======
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\projects\platinum\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\common\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\cpu\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\cpu\headers\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\lptmr\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\mcg\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\pmc\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\rcm\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\smc\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\uart\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\wdog\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\cmp\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\platforms\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\
+#        -Ol --use_c++_inline
+#    List file    =  
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\startup.lst
+#    Object file  =  
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\startup.o
+#
+###############################################################################
+
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\common\startup.c
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
       1          /*
       2           * File:    startup.c
       3           * Purpose: Generic Kinetis startup code
@@ -270,4 +323,8 @@ C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\common\startup.c
  156 bytes of CODE memory
 
 Errors: none
+<<<<<<< HEAD
 Warnings: 1
+=======
+Warnings: none
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235

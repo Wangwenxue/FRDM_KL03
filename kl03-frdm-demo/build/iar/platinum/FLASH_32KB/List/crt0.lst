@@ -1,5 +1,6 @@
 ###############################################################################
 #                                                                             #
+<<<<<<< HEAD
 #     IAR Assembler V7.40.3.8902/W32 for ARM 29/Feb/2016  22:04:37            #
 #     Copyright 1999-2015 IAR Systems AB.                                     #
 #                                                                             #
@@ -10,6 +11,18 @@
 #                            -OC:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\ #
 #                            -s+ -M<> -w+ -r                                  #
 #                            -LC:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\ #
+=======
+#     IAR Assembler V7.40.3.8902/W32 for ARM 22/Feb/2016  16:12:21            #
+#     Copyright 1999-2015 IAR Systems AB.                                     #
+#                                                                             #
+#           Source file   =  C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\cpu\crt0.s#
+#           List file     =  C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\crt0.lst#
+#           Object file   =  C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\crt0.o#
+#           Command line  =  C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\cpu\crt0.s #
+#                            -OC:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\ #
+#                            -s+ -M<> -w+ -r                                  #
+#                            -LC:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\ #
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 #                            -t8 --cpu Cortex-M0+ --fpu None                  #
 #                                                                             #
 ###############################################################################

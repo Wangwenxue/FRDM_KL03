@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\drivers\rcm\rcm.c"
 -std=c99
 -ferror-limit=100
@@ -29,11 +30,45 @@ C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\..\..\..\sr
 C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\..\..\..\src\platforms
 -I
 C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\..
+=======
+"C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\drivers\rcm\rcm.c"
+-std=c99
+-ferror-limit=100
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\projects\platinum
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\common
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\cpu
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\cpu\headers
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\lptmr
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\mcg
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\pmc
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\rcm
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\smc
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\uart
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\wdog
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\cmp
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\platforms
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\inc\c
 -I
+<<<<<<< HEAD
 C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\projects\platinum
 -I
 C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\common
@@ -61,6 +96,35 @@ C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\drivers\cmp
 C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\platforms
 -I
 C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar
+=======
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\projects\platinum
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\common
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\cpu
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\cpu\headers
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\drivers\lptmr
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\drivers\mcg
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\drivers\pmc
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\drivers\rcm
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\drivers\smc
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\drivers\uart
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\drivers\wdog
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\drivers\cmp
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\platforms
+-I
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 -DIAR=1
 -DFREEDOM=1
 -D__CHAR_BITS__=8

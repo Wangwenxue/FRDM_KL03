@@ -1,5 +1,6 @@
 ###############################################################################
 #
+<<<<<<< HEAD
 # IAR ELF Linker V7.40.3.8902/W32 for ARM                 29/Feb/2016  22:05:58
 # Copyright 2007-2015 IAR Systems AB.
 #
@@ -35,6 +36,43 @@
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\platinum_freedom.map
 #        --config
 #        "C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\..\config
+=======
+# IAR ELF Linker V7.40.3.8902/W32 for ARM                 22/Feb/2016  16:19:07
+# Copyright 2007-2015 IAR Systems AB.
+#
+#    Output file  =  
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Exe\platinum_freedom.out
+#    Map file     =  
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\platinum_freedom.map
+#    Command line =  
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\alloc.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\arm_cm0.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\assert.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\cmp.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\crt0.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\io.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\mcg_lite.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\memtest.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\platinum.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\pmc.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\printf.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\queue.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\rcm.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\smc.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\start.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\startup.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\stdlib.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\sysinit.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\uart.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\uif.o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\vectors.o
+#        --redirect _Printf=_PrintfFull --redirect _Scanf=_ScanfFull -o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Exe\platinum_freedom.out
+#        --map
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\platinum_freedom.map
+#        --config
+#        "C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\config
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 #        files\32KB_Pflash.icf" --semihosting --entry __iar_program_start --vfe
 #
 ###############################################################################
@@ -67,7 +105,11 @@ __SystemLibrary = DLib
   .noinit          ro code  0x00000410    0x18  crt0.o [1]
                           - 0x00000428    0x18
 
+<<<<<<< HEAD
 "P1":                                   0x139c
+=======
+"P1":                                   0x1398
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
   .text            ro code  0x00000428   0x4b8  printf.o [1]
   .text            ro code  0x000008e0    0xe0  I32DivModFast.o [4]
   .text            ro code  0x000009c0    0x1e  stdlib.o [1]
@@ -95,6 +137,7 @@ __SystemLibrary = DLib
   .rodata          const    0x00001364    0x28  rcm.o [1]
   .rodata          const    0x0000138c    0x28  start.o [1]
   .text            ro code  0x000013b4    0x28  data_init.o [4]
+<<<<<<< HEAD
   .rodata          const    0x000013dc    0x24  platinum.o [1]
   .rodata          const    0x00001400    0x24  rcm.o [1]
   .rodata          const    0x00001424    0x24  rcm.o [1]
@@ -149,6 +192,62 @@ __SystemLibrary = DLib
   .rodata          const    0x000017c4     0x0  zero_init3.o [4]
   CodeRelocate              0x000017c4     0x0  <Block>
                           - 0x000017c4  0x139c
+=======
+  .rodata          const    0x000013dc    0x24  rcm.o [1]
+  .rodata          const    0x00001400    0x24  rcm.o [1]
+  .iar.init_table  const    0x00001424    0x10  - Linker created -
+  .rodata          const    0x00001434    0x20  platinum.o [1]
+  .rodata          const    0x00001454    0x20  rcm.o [1]
+  .rodata          const    0x00001474    0x20  rcm.o [1]
+  .rodata          const    0x00001494    0x20  rcm.o [1]
+  .rodata          const    0x000014b4    0x1c  rcm.o [1]
+  .rodata          const    0x000014d0    0x1c  rcm.o [1]
+  .rodata          const    0x000014ec    0x1c  start.o [1]
+  .rodata          const    0x00001508    0x1c  start.o [1]
+  .text            ro code  0x00001524    0x1a  cmain.o [4]
+  .text            ro code  0x0000153e     0x4  low_level_init.o [3]
+  .text            ro code  0x00001542     0x8  exit.o [3]
+  .text            ro code  0x0000154c     0xa  cexit.o [4]
+  .text            ro code  0x00001558    0x14  exit.o [5]
+  .rodata          const    0x0000156c    0x18  rcm.o [1]
+  .rodata          const    0x00001584    0x18  rcm.o [1]
+  .rodata          const    0x0000159c    0x18  rcm.o [1]
+  .rodata          const    0x000015b4    0x18  rcm.o [1]
+  .text            ro code  0x000015cc    0x18  vectors.o [1]
+  .rodata          const    0x000015e4    0x14  rcm.o [1]
+  .rodata          const    0x000015f8    0x14  rcm.o [1]
+  .rodata          const    0x0000160c    0x14  start.o [1]
+  .rodata          const    0x00001620    0x14  start.o [1]
+  .rodata          const    0x00001634    0x14  start.o [1]
+  .rodata          const    0x00001648    0x14  start.o [1]
+  .rodata          const    0x0000165c    0x14  start.o [1]
+  .rodata          const    0x00001670    0x14  start.o [1]
+  .rodata          const    0x00001684    0x14  start.o [1]
+  .rodata          const    0x00001698    0x14  start.o [1]
+  .rodata          const    0x000016ac    0x10  rcm.o [1]
+  .rodata          const    0x000016bc    0x10  rcm.o [1]
+  .rodata          const    0x000016cc    0x10  rcm.o [1]
+  .rodata          const    0x000016dc    0x10  start.o [1]
+  .rodata          const    0x000016ec    0x10  start.o [1]
+  .rodata          const    0x000016fc    0x10  start.o [1]
+  .rodata          const    0x0000170c    0x10  start.o [1]
+  .rodata          const    0x0000171c    0x10  start.o [1]
+  .rodata          const    0x0000172c    0x10  start.o [1]
+  .rodata          const    0x0000173c    0x10  start.o [1]
+  .rodata          const    0x0000174c    0x10  start.o [1]
+  .rodata          const    0x0000175c    0x10  start.o [1]
+  .rodata          const    0x0000176c    0x10  start.o [1]
+  .rodata          const    0x0000177c    0x10  start.o [1]
+  .text            ro code  0x0000178c     0xc  cstartup_M.o [4]
+  .rodata          const    0x00001798     0x8  start.o [1]
+  .rodata          const    0x000017a0     0x8  start.o [1]
+  .rodata          const    0x000017a8     0x8  start.o [1]
+  .rodata          const    0x000017b0     0x8  start.o [1]
+  .rodata          const    0x000017b8     0x8  start.o [1]
+  .rodata          const    0x000017c0     0x0  zero_init3.o [4]
+  CodeRelocate              0x000017c0     0x0  <Block>
+                          - 0x000017c0  0x1398
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 
 "P2":                                     0x14
   .bss                      0x20000210    0x14  <Block>
@@ -179,11 +278,19 @@ Zero (__iar_zero_init3)
 
     Module            ro code  ro data  rw data
     ------            -------  -------  -------
+<<<<<<< HEAD
 C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj: [1]
     crt0.o                 24
     io.o                   28
     mcg_lite.o             76
     platinum.o             24       36
+=======
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj: [1]
+    crt0.o                 24
+    io.o                   28
+    mcg_lite.o             76
+    platinum.o             24       32
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
     printf.o            1 208
     rcm.o                 444      540
     start.o               724      920
@@ -193,7 +300,11 @@ C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\
     uart.o                108
     vectors.o              24    1 088
     -------------------------------------------
+<<<<<<< HEAD
     Total:              3 070    2 584       20
+=======
+    Total:              3 070    2 580       20
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 
 command line: [2]
     -------------------------------------------
@@ -224,7 +335,11 @@ shb_l.a: [5]
     Gaps                    8
     Linker created                  16
 -----------------------------------------------
+<<<<<<< HEAD
     Grand Total:        3 484    2 600       20
+=======
+    Grand Total:        3 484    2 596       20
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 
 
 *******************************************************************************
@@ -238,6 +353,7 @@ Entry                      Address   Size  Type      Object
 .data$$Base             0x00000000          --   Gb  - Linker created -
 .data_init$$Base        0x00000000          --   Gb  - Linker created -
 .data_init$$Limit       0x00000000          --   Gb  - Linker created -
+<<<<<<< HEAD
 .iar.init_table$$Base   0x00001448          --   Gb  - Linker created -
 .iar.init_table$$Limit  0x00001458          --   Gb  - Linker created -
 ?main                   0x00001529         Code  Gb  cmain.o [4]
@@ -248,6 +364,18 @@ CodeRelocateRam$$Limit  0x20000224          --   Gb  - Linker created -
 MCG_HIRC48              0x00001009   0x4c  Code  Gb  mcg_lite.o [1]
 Region$$Table$$Base     0x00001448          --   Gb  - Linker created -
 Region$$Table$$Limit    0x00001458          --   Gb  - Linker created -
+=======
+.iar.init_table$$Base   0x00001424          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x00001434          --   Gb  - Linker created -
+?main                   0x00001525         Code  Gb  cmain.o [4]
+CodeRelocate$$Base      0x000017c0          --   Gb  - Linker created -
+CodeRelocate$$Limit     0x000017c0          --   Gb  - Linker created -
+CodeRelocateRam$$Base   0x20000224          --   Gb  - Linker created -
+CodeRelocateRam$$Limit  0x20000224          --   Gb  - Linker created -
+MCG_HIRC48              0x00001009   0x4c  Code  Gb  mcg_lite.o [1]
+Region$$Table$$Base     0x00001424          --   Gb  - Linker created -
+Region$$Table$$Limit    0x00001434          --   Gb  - Linker created -
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 __BOOT_STACK_ADDRESS {Abs}
                         0x200005f8          --   Gb  command line/config [2]
 __VECTOR_RAM {Abs}      0x1ffffe00          --   Gb  command line/config [2]
@@ -257,6 +385,7 @@ __aeabi_idiv0           0x000009e1         Code  Gb  IntDivZer.o [4]
 __aeabi_idivmod         0x0000090d         Code  Gb  I32DivModFast.o [4]
 __aeabi_uidiv           0x00000913         Code  Gb  I32DivModFast.o [4]
 __aeabi_uidivmod        0x00000913         Code  Gb  I32DivModFast.o [4]
+<<<<<<< HEAD
 __cmain                 0x00001529         Code  Gb  cmain.o [4]
 __exit                  0x0000155d   0x14  Code  Gb  exit.o [5]
 __iar_data_init3        0x000013b5   0x28  Code  Gb  data_init.o [4]
@@ -273,6 +402,24 @@ core_clk_khz            0x20000218    0x4  Data  Gb  sysinit.o [1]
 cpu_identify            0x00000a03  0x204  Code  Gb  start.o [1]
 default_isr             0x000015d1   0x10  Code  Gb  vectors.o [1]
 exit                    0x00001547    0x8  Code  Gb  exit.o [3]
+=======
+__cmain                 0x00001525         Code  Gb  cmain.o [4]
+__exit                  0x00001559   0x14  Code  Gb  exit.o [5]
+__iar_data_init3        0x000013b5   0x28  Code  Gb  data_init.o [4]
+__iar_program_start     0x0000178d         Code  Gb  cstartup_M.o [4]
+__iar_zero_init3        0x00001245   0x3c  Code  Gb  zero_init3.o [4]
+__low_level_init        0x0000153f    0x4  Code  Gb  low_level_init.o [3]
+__startup               0x00000411         Code  Gb  crt0.o [1]
+__vector_table          0x00000000  0x410  Data  Gb  vectors.o [1]
+_call_main              0x00001531         Code  Gb  cmain.o [4]
+_exit                   0x0000154d         Code  Gb  cexit.o [4]
+_main                   0x0000153b         Code  Gb  cmain.o [4]
+common_startup          0x00000cb9   0x9c  Code  Gb  startup.o [1]
+core_clk_khz            0x20000218    0x4  Data  Gb  sysinit.o [1]
+cpu_identify            0x00000a03  0x204  Code  Gb  start.o [1]
+default_isr             0x000015cd   0x10  Code  Gb  vectors.o [1]
+exit                    0x00001543    0x8  Code  Gb  exit.o [3]
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 in_char                 0x000010c1    0xa  Code  Gb  io.o [1]
 main                    0x00000ff1   0x18  Code  Gb  platinum.o [1]
 mcg_clk_hz              0x20000210    0x4  Data  Gb  sysinit.o [1]
@@ -295,14 +442,22 @@ uart0_init              0x00001055   0x4c  Code  Gb  uart.o [1]
 uart0_putchar           0x000010b3    0xe  Code  Gb  uart.o [1]
 
 
+<<<<<<< HEAD
 [1] = C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj
+=======
+[1] = C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 [2] = command line
 [3] = dl6M_tln.a
 [4] = rt6M_tl.a
 [5] = shb_l.a
 
   3 484 bytes of readonly  code memory
+<<<<<<< HEAD
   2 600 bytes of readonly  data memory
+=======
+  2 596 bytes of readonly  data memory
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
      20 bytes of readwrite data memory
 
 Errors: none

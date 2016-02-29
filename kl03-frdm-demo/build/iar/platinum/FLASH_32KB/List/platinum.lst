@@ -1,11 +1,16 @@
 ###############################################################################
 #
+<<<<<<< HEAD
 # IAR ANSI C/C++ Compiler V7.40.3.8902/W32 for ARM        29/Feb/2016  22:05:58
+=======
+# IAR ANSI C/C++ Compiler V7.40.3.8902/W32 for ARM        22/Feb/2016  16:14:05
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 # Copyright 1999-2015 IAR Systems AB.
 #
 #    Cpu mode     =  thumb
 #    Endian       =  little
 #    Source file  =  
+<<<<<<< HEAD
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\projects\platinum\platinum.c
 #    Command line =  
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\projects\platinum\platinum.c
@@ -13,11 +18,21 @@
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\
 #        -o
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\
+=======
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\projects\platinum\platinum.c
+#    Command line =  
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\projects\platinum\platinum.c
+#        -D IAR -D FREEDOM -lCN
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\
+#        -o
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 #        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
 #        --no_clustering --no_scheduling --debug --endian=little
 #        --cpu=Cortex-M0+ -e --fpu=None --dlib_config "C:\Program Files
 #        (x86)\IAR Systems\Embedded Workbench
 #        7.2\arm\INC\c\DLib_Config_Normal.h" -I
+<<<<<<< HEAD
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\..\..\..\src\projects\platinum\
 #        -I
 #        C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\..\..\..\src\common\
@@ -57,6 +72,47 @@ C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\projects\platinum\platinum
       1          /*
       2           * File:	  	platinum.c
       3           * Purpose:		Demo PWM Function
+=======
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\projects\platinum\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\common\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\cpu\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\cpu\headers\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\lptmr\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\mcg\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\pmc\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\rcm\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\smc\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\uart\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\wdog\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\drivers\cmp\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\..\..\src\platforms\
+#        -I
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\..\
+#        -Ol --use_c++_inline
+#    List file    =  
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\List\platinum.lst
+#    Object file  =  
+#        C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Obj\platinum.o
+#
+###############################################################################
+
+C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\src\projects\platinum\platinum.c
+      1          /*
+      2           * File:		platinum.c
+      3           * Purpose:		Main process
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
       4           *
       5           */
       6          
@@ -71,16 +127,27 @@ C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\projects\platinum\platinum
    \   00000000   0xB580             PUSH     {R7,LR}
      12          	char ch;
      13                  
+<<<<<<< HEAD
      14                  printf("\nRunning platinum example project.\n");
+=======
+     14                  printf("\nRunning the platinum project.\n");
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
    \   00000002   0x4804             LDR      R0,??main_0
    \   00000004   0x.... 0x....      BL       printf
      15          
      16          	while(1)
      17          	{
+<<<<<<< HEAD
      18                    ch = in_char();
    \                     ??main_1: (+1)
    \   00000008   0x.... 0x....      BL       in_char
      19          	  out_char(ch);
+=======
+     18          		ch = in_char();
+   \                     ??main_1: (+1)
+   \   00000008   0x.... 0x....      BL       in_char
+     19          		out_char(ch);
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
    \   0000000C   0xB2C0             UXTB     R0,R0
    \   0000000E   0x.... 0x....      BL       out_char
    \   00000012   0xE7F9             B        ??main_1
@@ -91,19 +158,31 @@ C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\projects\platinum\platinum
 
    \                                 In section .rodata, align 4
    \                     ?_0:
+<<<<<<< HEAD
    \   00000000   0x0A 0x52          DC8 "\012Running platinum example project.\012"
    \              0x75 0x6E    
    \              0x6E 0x69    
    \              0x6E 0x67    
+=======
+   \   00000000   0x0A 0x52          DC8 "\012Running the platinum project.\012"
+   \              0x75 0x6E    
+   \              0x6E 0x69    
+   \              0x6E 0x67    
+   \              0x20 0x74    
+   \              0x68 0x65    
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
    \              0x20 0x70    
    \              0x6C 0x61    
    \              0x74 0x69    
    \              0x6E 0x75    
    \              0x6D 0x20    
+<<<<<<< HEAD
    \              0x65 0x78    
    \              0x61 0x6D    
    \              0x70 0x6C    
    \              0x65 0x20    
+=======
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
    \              0x70 0x72    
    \              0x6F 0x6A    
    \              0x65 0x63    
@@ -125,6 +204,7 @@ C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\projects\platinum\platinum
 
    Bytes  Function/Label
    -----  --------------
+<<<<<<< HEAD
       36  ?_0
       24  main
 
@@ -137,3 +217,17 @@ C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\src\projects\platinum\platinum
 
 Errors: none
 Warnings: 1
+=======
+      32  ?_0
+      24  main
+
+ 
+ 32 bytes in section .rodata
+ 24 bytes in section .text
+ 
+ 24 bytes of CODE  memory
+ 32 bytes of CONST memory
+
+Errors: none
+Warnings: none
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235

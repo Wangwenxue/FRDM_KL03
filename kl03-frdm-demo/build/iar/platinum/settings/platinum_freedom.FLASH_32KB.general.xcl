@@ -2,7 +2,11 @@
 
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\bin\armpemicro.dll" 
 
+<<<<<<< HEAD
 "C:\Users\b51443\Desktop\FRDM_KL03Z\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Exe\platinum_freedom.out" 
+=======
+"C:\Users\b51443\Desktop\kl03-frdm-demo\kl03-frdm-demo\build\iar\platinum\FLASH_32KB\Exe\platinum_freedom.out" 
+>>>>>>> 30d1d1c78d66d5ee57ac2021dbd87b186e5c0235
 
 --plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\bin\armbat.dll" 
 
