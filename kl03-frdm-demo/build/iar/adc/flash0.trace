@@ -1,0 +1,91 @@
+File generated Wed Mar 09 14:38:23 2016
+
+Pass 1 of 1
+Starting fragment-style flashloader pass.
+FlashInitEntry is at 0x200000BC
+FlashWriteEntry is at 0x200000C4
+FlashEraseWriteEntry is at 0x200000CC
+FlashBreak is at 0x1FFFFEB8
+FlashBufferStart is at 0x20000100
+FlashBufferEnd is at 0x20000390
+theFlashParams is at 0x20000390
+FlashChecksumEntry not found
+FlashSignoffEntry not found
+page size is 4 (0x4)
+filler is 0xff
+buffer size is 656 (0x290)
+SimpleCode records (after offset):
+  Record 0: @ 0x0 [1040 (0x410) bytes] 0x0 - 0x40f [f8 5 0]
+  Record 1: @ 0x410 [5352 (0x14e8) bytes] 0x410 - 0x18f7 [0 20 0]
+Base of flash at 0x0
+->init       : base @ 0x0, image size 0x18f8
+      Args: (argc = 0)
+  timing(init): 0.0000 (CPU) 0.2340 (elapsed)
+Transaction list:
+  Transaction @ 0x0 + 0x0 (0x290 bytes) 1 packet(s).
+    Will erase 1 block(s):
+      0: 0x0 (0x400 bytes)
+  Transaction @ 0x0 + 0x290 (0x170 bytes) 1 packet(s).
+  Transaction @ 0x400 + 0x0 (0x290 bytes) 1 packet(s).
+    Will erase 1 block(s):
+      0: 0x400 (0x400 bytes)
+  Transaction @ 0x400 + 0x290 (0x170 bytes) 1 packet(s).
+  Transaction @ 0x800 + 0x0 (0x290 bytes) 1 packet(s).
+    Will erase 1 block(s):
+      0: 0x800 (0x400 bytes)
+  Transaction @ 0x800 + 0x290 (0x170 bytes) 1 packet(s).
+  Transaction @ 0xc00 + 0x0 (0x290 bytes) 1 packet(s).
+    Will erase 1 block(s):
+      0: 0xc00 (0x400 bytes)
+  Transaction @ 0xc00 + 0x290 (0x170 bytes) 1 packet(s).
+  Transaction @ 0x1000 + 0x0 (0x290 bytes) 1 packet(s).
+    Will erase 1 block(s):
+      0: 0x1000 (0x400 bytes)
+  Transaction @ 0x1000 + 0x290 (0x170 bytes) 1 packet(s).
+  Transaction @ 0x1400 + 0x0 (0x290 bytes) 1 packet(s).
+    Will erase 1 block(s):
+      0: 0x1400 (0x400 bytes)
+  Transaction @ 0x1400 + 0x290 (0x268 bytes) 2 packet(s).
+    Will erase 1 block(s):
+      0: 0x1800 (0x400 bytes)
+->multi_erase: 1 blocks (0x8 bytes in buffer) [0 0 0]
+  timing(erase): 0.0312 (CPU) 0.0930 (elapsed)
+->write      : @ 0x0 (0x290 bytes, offset 0x0 into block @ 0x0) [f8 5 0]
+  timing(write): 0.0000 (CPU) 0.0930 (elapsed)
+->write      : @ 0x290 (0x170 bytes, offset 0x290 into block @ 0x0) [e5 16 0]
+  timing(write): 0.0000 (CPU) 0.0930 (elapsed)
+->multi_erase: 1 blocks (0x8 bytes in buffer) [0 4 0]
+  timing(erase): 0.0000 (CPU) 0.0930 (elapsed)
+->write      : @ 0x400 (0x290 bytes, offset 0x0 into block @ 0x400) [ff ff ff]
+  timing(write): 0.0000 (CPU) 0.1090 (elapsed)
+->write      : @ 0x690 (0x170 bytes, offset 0x290 into block @ 0x400) [c7 e0 73]
+  timing(write): 0.0000 (CPU) 0.0940 (elapsed)
+->multi_erase: 1 blocks (0x8 bytes in buffer) [0 8 0]
+  timing(erase): 0.0000 (CPU) 0.1090 (elapsed)
+->write      : @ 0x800 (0x290 bytes, offset 0x0 into block @ 0x800) [3 a9 c]
+  timing(write): 0.0156 (CPU) 0.0940 (elapsed)
+->write      : @ 0xa90 (0x170 bytes, offset 0x290 into block @ 0x800) [6 d0 2]
+  timing(write): 0.0156 (CPU) 0.0940 (elapsed)
+->multi_erase: 1 blocks (0x8 bytes in buffer) [0 c 0]
+  timing(erase): 0.0000 (CPU) 0.1090 (elapsed)
+->write      : @ 0xc00 (0x290 bytes, offset 0x0 into block @ 0xc00) [ff f7 95]
+  timing(write): 0.0156 (CPU) 0.0940 (elapsed)
+->write      : @ 0xe90 (0x170 bytes, offset 0x290 into block @ 0xc00) [7 48 1]
+  timing(write): 0.0000 (CPU) 0.0940 (elapsed)
+->multi_erase: 1 blocks (0x8 bytes in buffer) [0 10 0]
+  timing(erase): 0.0000 (CPU) 0.0940 (elapsed)
+->write      : @ 0x1000 (0x290 bytes, offset 0x0 into block @ 0x1000) [0 28 10]
+  timing(write): 0.0000 (CPU) 0.1090 (elapsed)
+->write      : @ 0x1290 (0x170 bytes, offset 0x290 into block @ 0x1000) [4b 42 20]
+  timing(write): 0.0000 (CPU) 0.0940 (elapsed)
+->multi_erase: 1 blocks (0x8 bytes in buffer) [0 14 0]
+  timing(erase): 0.0000 (CPU) 0.0930 (elapsed)
+->write      : @ 0x1400 (0x290 bytes, offset 0x0 into block @ 0x1400) [65 63 6f]
+  timing(write): 0.0000 (CPU) 0.0930 (elapsed)
+->multi_erase: 1 blocks (0x8 bytes in buffer) [0 18 0]
+  timing(erase): 0.0000 (CPU) 0.0940 (elapsed)
+->write      : @ 0x1690 (0x268 bytes, offset 0x290 into block @ 0x1400) [29 20 52]
+  timing(write): 0.0000 (CPU) 0.0940 (elapsed)
+Duration:   1.28 (CPU)   5.46 (elapsed)
+  of which on target: 0.0780 (CPU) 2.0740 (elapsed)
+Flash loading pass finished

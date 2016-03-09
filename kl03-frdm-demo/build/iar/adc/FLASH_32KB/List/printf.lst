@@ -1,0 +1,1473 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V7.40.3.8902/W32 for ARM        09/Mar/2016  19:35:25
+# Copyright 1999-2015 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\src\common\printf.c
+#    Command line =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\src\common\printf.c
+#        -D IAR -D FREEDOM -lCN
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\List\
+#        -o
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\Obj\
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M0+ -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench
+#        7.2\arm\INC\c\DLib_Config_Normal.h" -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\projects\adc\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\common\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\cpu\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\cpu\headers\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\lptmr\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\mcg\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\pmc\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\rcm\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\smc\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\uart\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\wdog\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\cmp\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\platforms\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\adc\
+#        -On --use_c++_inline
+#    List file    =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\List\printf.lst
+#    Object file  =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\Obj\printf.o
+#
+###############################################################################
+
+C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\src\common\printf.c
+      1          /*
+      2           * File:        printk.c
+      3           * Purpose:     The standard C library routine printf()
+      4           */
+      5          
+      6          #include "common.h"
+      7          #include <stdarg.h>
+      8          
+      9          /********************************************************************/
+     10          
+     11          typedef struct
+     12          {
+     13              int dest;
+     14              void (*func)(char);
+     15              char *loc;
+     16          } PRINTK_INFO;
+     17          
+     18          int 
+     19          printk (PRINTK_INFO *, const char *, va_list);
+     20          
+     21          /********************************************************************/
+     22          
+     23          #define DEST_CONSOLE    (1)
+     24          #define DEST_STRING     (2)
+     25          
+     26          #define FLAGS_MINUS     (0x01)
+     27          #define FLAGS_PLUS      (0x02)
+     28          #define FLAGS_SPACE     (0x04)
+     29          #define FLAGS_ZERO      (0x08)
+     30          #define FLAGS_POUND     (0x10)
+     31          
+     32          #define IS_FLAG_MINUS(a)    (a & FLAGS_MINUS)
+     33          #define IS_FLAG_PLUS(a)     (a & FLAGS_PLUS)
+     34          #define IS_FLAG_SPACE(a)    (a & FLAGS_SPACE)
+     35          #define IS_FLAG_ZERO(a)     (a & FLAGS_ZERO)
+     36          #define IS_FLAG_POUND(a)    (a & FLAGS_POUND)
+     37          
+     38          #define LENMOD_h        (0x01)
+     39          #define LENMOD_l        (0x02)
+     40          #define LENMOD_L        (0x04)
+     41          
+     42          #define IS_LENMOD_h(a)  (a & LENMOD_h)
+     43          #define IS_LENMOD_l(a)  (a & LENMOD_l)
+     44          #define IS_LENMOD_L(a)  (a & LENMOD_L)
+     45          
+     46          #define FMT_d   (0x0001)
+     47          #define FMT_o   (0x0002)
+     48          #define FMT_x   (0x0004)
+     49          #define FMT_X   (0x0008)
+     50          #define FMT_u   (0x0010)
+     51          #define FMT_c   (0x0020)
+     52          #define FMT_s   (0x0040)
+     53          #define FMT_p   (0x0080)
+     54          #define FMT_n   (0x0100)
+     55          
+     56          #define IS_FMT_d(a)     (a & FMT_d)
+     57          #define IS_FMT_o(a)     (a & FMT_o)
+     58          #define IS_FMT_x(a)     (a & FMT_x)
+     59          #define IS_FMT_X(a)     (a & FMT_X)
+     60          #define IS_FMT_u(a)     (a & FMT_u)
+     61          #define IS_FMT_c(a)     (a & FMT_c)
+     62          #define IS_FMT_s(a)     (a & FMT_s)
+     63          #define IS_FMT_p(a)     (a & FMT_p)
+     64          #define IS_FMT_n(a)     (a & FMT_n)
+     65          
+     66          /********************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     67          static void
+     68          printk_putc (int c, int *count, PRINTK_INFO *info)
+     69          {
+   \                     printk_putc: (+1)
+   \   00000000   0xB570             PUSH     {R4-R6,LR}
+   \   00000002   0x0004             MOVS     R4,R0
+   \   00000004   0x000D             MOVS     R5,R1
+   \   00000006   0x0016             MOVS     R6,R2
+     70              switch (info->dest)
+   \   00000008   0x6830             LDR      R0,[R6, #+0]
+   \   0000000A   0x2801             CMP      R0,#+1
+   \   0000000C   0xD002             BEQ      ??printk_putc_0
+   \   0000000E   0x2802             CMP      R0,#+2
+   \   00000010   0xD005             BEQ      ??printk_putc_1
+   \   00000012   0xE00B             B        ??printk_putc_2
+     71              {
+     72                  case DEST_CONSOLE:
+     73                      info->func((char)c);
+   \                     ??printk_putc_0: (+1)
+   \   00000014   0x0020             MOVS     R0,R4
+   \   00000016   0xB2C0             UXTB     R0,R0
+   \   00000018   0x6871             LDR      R1,[R6, #+4]
+   \   0000001A   0x4788             BLX      R1
+     74                      break;
+   \   0000001C   0xE006             B        ??printk_putc_3
+     75                  case DEST_STRING:
+     76                      *(info->loc) = (unsigned char)c;
+   \                     ??printk_putc_1: (+1)
+   \   0000001E   0x0020             MOVS     R0,R4
+   \   00000020   0x68B1             LDR      R1,[R6, #+8]
+   \   00000022   0x7008             STRB     R0,[R1, #+0]
+     77                      ++(info->loc);
+   \   00000024   0x68B0             LDR      R0,[R6, #+8]
+   \   00000026   0x1C40             ADDS     R0,R0,#+1
+   \   00000028   0x60B0             STR      R0,[R6, #+8]
+     78                      break;
+   \   0000002A   0xE7FF             B        ??printk_putc_3
+     79                  default:
+     80                      break;
+     81              }
+     82              *count += 1;
+   \                     ??printk_putc_2: (+1)
+   \                     ??printk_putc_3: (+1)
+   \   0000002C   0x6828             LDR      R0,[R5, #+0]
+   \   0000002E   0x1C40             ADDS     R0,R0,#+1
+   \   00000030   0x6028             STR      R0,[R5, #+0]
+     83          }
+   \   00000032   0xBD70             POP      {R4-R6,PC}       ;; return
+     84          
+     85          /********************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     86          static int
+     87          printk_mknumstr (char *numstr, void *nump, int neg, int radix)
+     88          {
+   \                     printk_mknumstr: (+1)
+   \   00000000   0xB5FF             PUSH     {R0-R7,LR}
+   \   00000002   0xB084             SUB      SP,SP,#+16
+     89              int a,b,c;
+     90              unsigned int ua,ub,uc;
+     91          
+     92              int nlen;
+     93              char *nstrp;
+     94          
+     95              nlen = 0;
+   \   00000004   0x2000             MOVS     R0,#+0
+   \   00000006   0x0006             MOVS     R6,R0
+     96              nstrp = numstr;
+   \   00000008   0x9804             LDR      R0,[SP, #+16]
+   \   0000000A   0x0005             MOVS     R5,R0
+     97              *nstrp++ = '\0';
+   \   0000000C   0x2000             MOVS     R0,#+0
+   \   0000000E   0x7028             STRB     R0,[R5, #+0]
+   \   00000010   0x1C6D             ADDS     R5,R5,#+1
+     98          
+     99              if (neg)
+   \   00000012   0x9806             LDR      R0,[SP, #+24]
+   \   00000014   0x2800             CMP      R0,#+0
+   \   00000016   0xD025             BEQ      ??printk_mknumstr_0
+    100              {
+    101                  a = *(int *)nump;
+   \   00000018   0x9805             LDR      R0,[SP, #+20]
+   \   0000001A   0x6800             LDR      R0,[R0, #+0]
+   \   0000001C   0x9001             STR      R0,[SP, #+4]
+    102                  if (a == 0)
+   \   0000001E   0x9801             LDR      R0,[SP, #+4]
+   \   00000020   0x2800             CMP      R0,#+0
+   \   00000022   0xD103             BNE      ??printk_mknumstr_1
+    103                  {
+    104                      *nstrp = '0';
+   \   00000024   0x2030             MOVS     R0,#+48
+   \   00000026   0x7028             STRB     R0,[R5, #+0]
+    105                      ++nlen;
+   \   00000028   0x1C76             ADDS     R6,R6,#+1
+    106                      goto done;
+   \   0000002A   0xE03F             B        ??printk_mknumstr_2
+    107                  }
+    108                  while (a != 0)
+   \                     ??printk_mknumstr_1: (+1)
+   \   0000002C   0x9801             LDR      R0,[SP, #+4]
+   \   0000002E   0x2800             CMP      R0,#+0
+   \   00000030   0xD03C             BEQ      ??printk_mknumstr_2
+    109                  {
+    110                      b = (int)a / (int)radix;
+   \   00000032   0x9801             LDR      R0,[SP, #+4]
+   \   00000034   0x9907             LDR      R1,[SP, #+28]
+   \   00000036   0x.... 0x....      BL       __aeabi_idiv
+   \   0000003A   0x9003             STR      R0,[SP, #+12]
+    111                      c = (int)a - ((int)b * (int)radix);
+   \   0000003C   0x9801             LDR      R0,[SP, #+4]
+   \   0000003E   0x9903             LDR      R1,[SP, #+12]
+   \   00000040   0x9A07             LDR      R2,[SP, #+28]
+   \   00000042   0x4351             MULS     R1,R2,R1
+   \   00000044   0x1A40             SUBS     R0,R0,R1
+   \   00000046   0x0007             MOVS     R7,R0
+    112                      if (c < 0)
+   \   00000048   0x2F00             CMP      R7,#+0
+   \   0000004A   0xD503             BPL      ??printk_mknumstr_3
+    113                      {
+    114                          c = ~c + 1 + '0';
+   \   0000004C   0x43F8             MVNS     R0,R7
+   \   0000004E   0x0007             MOVS     R7,R0
+   \   00000050   0x3731             ADDS     R7,R7,#+49
+   \   00000052   0xE000             B        ??printk_mknumstr_4
+    115                      }
+    116                      else
+    117                      {
+    118                          c = c + '0';
+   \                     ??printk_mknumstr_3: (+1)
+   \   00000054   0x3730             ADDS     R7,R7,#+48
+    119                      }
+    120                      a = b;
+   \                     ??printk_mknumstr_4: (+1)
+   \   00000056   0x9803             LDR      R0,[SP, #+12]
+   \   00000058   0x9001             STR      R0,[SP, #+4]
+    121                      *nstrp++ = (char)c;
+   \   0000005A   0x0038             MOVS     R0,R7
+   \   0000005C   0x7028             STRB     R0,[R5, #+0]
+   \   0000005E   0x1C6D             ADDS     R5,R5,#+1
+    122                      ++nlen;
+   \   00000060   0x1C76             ADDS     R6,R6,#+1
+   \   00000062   0xE7E3             B        ??printk_mknumstr_1
+    123                  }
+    124              }
+    125              else
+    126              {
+    127                  ua = *(unsigned int *)nump;
+   \                     ??printk_mknumstr_0: (+1)
+   \   00000064   0x9805             LDR      R0,[SP, #+20]
+   \   00000066   0x6800             LDR      R0,[R0, #+0]
+   \   00000068   0x9000             STR      R0,[SP, #+0]
+    128                  if (ua == 0)
+   \   0000006A   0x9800             LDR      R0,[SP, #+0]
+   \   0000006C   0x2800             CMP      R0,#+0
+   \   0000006E   0xD103             BNE      ??printk_mknumstr_5
+    129                  {
+    130                      *nstrp = '0';
+   \   00000070   0x2030             MOVS     R0,#+48
+   \   00000072   0x7028             STRB     R0,[R5, #+0]
+    131                      ++nlen;
+   \   00000074   0x1C76             ADDS     R6,R6,#+1
+    132                      goto done;
+   \   00000076   0xE019             B        ??printk_mknumstr_2
+    133                  }
+    134                  while (ua != 0)
+   \                     ??printk_mknumstr_5: (+1)
+   \   00000078   0x9800             LDR      R0,[SP, #+0]
+   \   0000007A   0x2800             CMP      R0,#+0
+   \   0000007C   0xD016             BEQ      ??printk_mknumstr_2
+    135                  {
+    136                      ub = (unsigned int)ua / (unsigned int)radix;
+   \   0000007E   0x9800             LDR      R0,[SP, #+0]
+   \   00000080   0x9907             LDR      R1,[SP, #+28]
+   \   00000082   0x.... 0x....      BL       __aeabi_uidiv
+   \   00000086   0x9002             STR      R0,[SP, #+8]
+    137                      uc = (unsigned int)ua - ((unsigned int)ub * (unsigned int)radix);
+   \   00000088   0x9800             LDR      R0,[SP, #+0]
+   \   0000008A   0x9902             LDR      R1,[SP, #+8]
+   \   0000008C   0x9A07             LDR      R2,[SP, #+28]
+   \   0000008E   0x4351             MULS     R1,R2,R1
+   \   00000090   0x1A40             SUBS     R0,R0,R1
+   \   00000092   0x0004             MOVS     R4,R0
+    138                      if (uc < 10)
+   \   00000094   0x2C0A             CMP      R4,#+10
+   \   00000096   0xD201             BCS      ??printk_mknumstr_6
+    139                      {
+    140                          uc = uc + '0';
+   \   00000098   0x3430             ADDS     R4,R4,#+48
+   \   0000009A   0xE000             B        ??printk_mknumstr_7
+    141                      }
+    142                      else
+    143                      {
+    144                          uc = uc - 10 + 'A';
+   \                     ??printk_mknumstr_6: (+1)
+   \   0000009C   0x3437             ADDS     R4,R4,#+55
+    145                      }
+    146                      ua = ub;
+   \                     ??printk_mknumstr_7: (+1)
+   \   0000009E   0x9802             LDR      R0,[SP, #+8]
+   \   000000A0   0x9000             STR      R0,[SP, #+0]
+    147                      *nstrp++ = (char)uc;
+   \   000000A2   0x0020             MOVS     R0,R4
+   \   000000A4   0x7028             STRB     R0,[R5, #+0]
+   \   000000A6   0x1C6D             ADDS     R5,R5,#+1
+    148                      ++nlen;
+   \   000000A8   0x1C76             ADDS     R6,R6,#+1
+   \   000000AA   0xE7E5             B        ??printk_mknumstr_5
+    149                  }
+    150              }
+    151              done:
+    152              return nlen;
+   \                     ??printk_mknumstr_2: (+1)
+   \   000000AC   0x0030             MOVS     R0,R6
+   \   000000AE   0xB008             ADD      SP,SP,#+32
+   \   000000B0   0xBDF0             POP      {R4-R7,PC}       ;; return
+    153          }
+    154          
+    155          /********************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    156          static void
+    157          printk_pad_zero (int curlen, int field_width, int *count, PRINTK_INFO *info)
+    158          {
+   \                     printk_pad_zero: (+1)
+   \   00000000   0xB5F8             PUSH     {R3-R7,LR}
+   \   00000002   0x0007             MOVS     R7,R0
+   \   00000004   0x000E             MOVS     R6,R1
+   \   00000006   0x0015             MOVS     R5,R2
+    159              int i;
+    160          
+    161              for (i = curlen; i < field_width; i++)
+   \   00000008   0x003C             MOVS     R4,R7
+   \                     ??printk_pad_zero_0: (+1)
+   \   0000000A   0x42B4             CMP      R4,R6
+   \   0000000C   0xDA06             BGE      ??printk_pad_zero_1
+    162              {
+    163                  printk_putc('0',count, info);
+   \   0000000E   0x9A00             LDR      R2,[SP, #+0]
+   \   00000010   0x0029             MOVS     R1,R5
+   \   00000012   0x2030             MOVS     R0,#+48
+   \   00000014   0x.... 0x....      BL       printk_putc
+    164              }
+   \   00000018   0x1C64             ADDS     R4,R4,#+1
+   \   0000001A   0xE7F6             B        ??printk_pad_zero_0
+    165          }
+   \                     ??printk_pad_zero_1: (+1)
+   \   0000001C   0xBDF1             POP      {R0,R4-R7,PC}    ;; return
+    166          
+    167          /********************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    168          static void
+    169          printk_pad_space (int curlen, int field_width, int *count, PRINTK_INFO *info)
+    170          {
+   \                     printk_pad_space: (+1)
+   \   00000000   0xB5F8             PUSH     {R3-R7,LR}
+   \   00000002   0x0007             MOVS     R7,R0
+   \   00000004   0x000E             MOVS     R6,R1
+   \   00000006   0x0015             MOVS     R5,R2
+    171              int i;
+    172          
+    173              for (i = curlen; i < field_width; i++)
+   \   00000008   0x003C             MOVS     R4,R7
+   \                     ??printk_pad_space_0: (+1)
+   \   0000000A   0x42B4             CMP      R4,R6
+   \   0000000C   0xDA06             BGE      ??printk_pad_space_1
+    174              {
+    175                  printk_putc(' ',count, info);
+   \   0000000E   0x9A00             LDR      R2,[SP, #+0]
+   \   00000010   0x0029             MOVS     R1,R5
+   \   00000012   0x2020             MOVS     R0,#+32
+   \   00000014   0x.... 0x....      BL       printk_putc
+    176              }
+   \   00000018   0x1C64             ADDS     R4,R4,#+1
+   \   0000001A   0xE7F6             B        ??printk_pad_space_0
+    177          }
+   \                     ??printk_pad_space_1: (+1)
+   \   0000001C   0xBDF1             POP      {R0,R4-R7,PC}    ;; return
+    178          
+    179          /********************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    180          int
+    181          printk (PRINTK_INFO *info, const char *fmt, va_list ap)
+    182          {
+   \                     printk: (+1)
+   \   00000000   0xB5F3             PUSH     {R0,R1,R4-R7,LR}
+   \   00000002   0xB095             SUB      SP,SP,#+84
+   \   00000004   0x0014             MOVS     R4,R2
+    183              /* va_list ap; */
+    184              char *p;
+    185              int c;
+    186          
+    187              char vstr[33];
+    188              char *vstrp;
+    189              int vlen;
+    190          
+    191              int done;
+    192              int count = 0;
+   \   00000006   0x2000             MOVS     R0,#+0
+   \   00000008   0x9000             STR      R0,[SP, #+0]
+    193          
+    194              int flags_used;
+    195              int field_width;
+    196          #if 0
+    197              int precision_used;
+    198              int precision_width;
+    199              int length_modifier;
+    200          #endif
+    201          
+    202              int ival;
+    203              int schar, dschar;
+    204              int *ivalp;
+    205              char *sval;
+    206              int cval;
+    207              unsigned int uval;
+    208          
+    209              /*
+    210               * Start parsing apart the format string and display appropriate
+    211               * formats and data.
+    212               */
+    213              for (p = (char *)fmt; (c = *p) != 0; p++)
+   \   0000000A   0x9816             LDR      R0,[SP, #+88]
+   \   0000000C   0x0005             MOVS     R5,R0
+   \                     ??printk_0: (+1)
+   \   0000000E   0x7828             LDRB     R0,[R5, #+0]
+   \   00000010   0x9002             STR      R0,[SP, #+8]
+   \   00000012   0x9802             LDR      R0,[SP, #+8]
+   \   00000014   0x2800             CMP      R0,#+0
+   \   00000016   0xD100             BNE      .+4
+   \   00000018   0xE1E1             B        ??printk_1
+    214              {
+    215                  /*
+    216                   * All formats begin with a '%' marker.  Special chars like
+    217                   * '\n' or '\t' are normally converted to the appropriate
+    218                   * character by the __compiler__.  Thus, no need for this
+    219                   * routine to account for the '\' character.
+    220                   */
+    221                  if (c != '%')
+   \   0000001A   0x9802             LDR      R0,[SP, #+8]
+   \   0000001C   0x2825             CMP      R0,#+37
+   \   0000001E   0xD013             BEQ      ??printk_2
+    222                  {
+    223                      /*
+    224                       * This needs to be replaced with something like
+    225                       * 'out_char()' or call an OS routine.
+    226                       */
+    227          #ifndef UNIX_DEBUG
+    228                      if (c != '\n')
+   \   00000020   0x9802             LDR      R0,[SP, #+8]
+   \   00000022   0x280A             CMP      R0,#+10
+   \   00000024   0xD005             BEQ      ??printk_3
+    229                      {
+    230                          printk_putc(c, &count, info);
+   \   00000026   0x9A15             LDR      R2,[SP, #+84]
+   \   00000028   0x4669             MOV      R1,SP
+   \   0000002A   0x9802             LDR      R0,[SP, #+8]
+   \   0000002C   0x.... 0x....      BL       printk_putc
+   \   00000030   0xE009             B        ??printk_4
+    231                      }
+    232                      else
+    233                      {
+    234                          printk_putc(0x0D /* CR */, &count, info);
+   \                     ??printk_3: (+1)
+   \   00000032   0x9A15             LDR      R2,[SP, #+84]
+   \   00000034   0x4669             MOV      R1,SP
+   \   00000036   0x200D             MOVS     R0,#+13
+   \   00000038   0x.... 0x....      BL       printk_putc
+    235                          printk_putc(0x0A /* LF */, &count, info);
+   \   0000003C   0x9A15             LDR      R2,[SP, #+84]
+   \   0000003E   0x4669             MOV      R1,SP
+   \   00000040   0x200A             MOVS     R0,#+10
+   \   00000042   0x.... 0x....      BL       printk_putc
+    236                      }
+    237          #else
+    238                      printk_putc(c, &count, info);
+    239          #endif
+    240          
+    241                      /*
+    242                       * By using 'continue', the next iteration of the loop
+    243                       * is used, skipping the code that follows.
+    244                       */
+    245                      continue;
+   \                     ??printk_4: (+1)
+   \   00000046   0xE1C8             B        ??printk_5
+    246                  }
+    247          
+    248                  /*
+    249                   * First check for specification modifier flags.
+    250                   */
+    251                  flags_used = 0;
+   \                     ??printk_2: (+1)
+   \   00000048   0x2000             MOVS     R0,#+0
+   \   0000004A   0x0007             MOVS     R7,R0
+    252                  done = FALSE;
+   \   0000004C   0x2000             MOVS     R0,#+0
+   \   0000004E   0x9005             STR      R0,[SP, #+20]
+    253                  while (!done)
+   \                     ??printk_6: (+1)
+   \   00000050   0x9805             LDR      R0,[SP, #+20]
+   \   00000052   0x2800             CMP      R0,#+0
+   \   00000054   0xD124             BNE      ??printk_7
+    254                  {
+    255                      switch (/* c = */ *++p)
+   \   00000056   0x1C6D             ADDS     R5,R5,#+1
+   \   00000058   0x7828             LDRB     R0,[R5, #+0]
+   \   0000005A   0x2820             CMP      R0,#+32
+   \   0000005C   0xD010             BEQ      ??printk_8
+   \   0000005E   0x2823             CMP      R0,#+35
+   \   00000060   0xD016             BEQ      ??printk_9
+   \   00000062   0x282B             CMP      R0,#+43
+   \   00000064   0xD008             BEQ      ??printk_10
+   \   00000066   0x282D             CMP      R0,#+45
+   \   00000068   0xD002             BEQ      ??printk_11
+   \   0000006A   0x2830             CMP      R0,#+48
+   \   0000006C   0xD00C             BEQ      ??printk_12
+   \   0000006E   0xE013             B        ??printk_13
+    256                      {
+    257                          case '-':
+    258                              flags_used |= FLAGS_MINUS;
+   \                     ??printk_11: (+1)
+   \   00000070   0x0038             MOVS     R0,R7
+   \   00000072   0x2701             MOVS     R7,#+1
+   \   00000074   0x4307             ORRS     R7,R7,R0
+    259                              break;
+   \   00000076   0xE7EB             B        ??printk_6
+    260                          case '+':
+    261                              flags_used |= FLAGS_PLUS;
+   \                     ??printk_10: (+1)
+   \   00000078   0x0038             MOVS     R0,R7
+   \   0000007A   0x2702             MOVS     R7,#+2
+   \   0000007C   0x4307             ORRS     R7,R7,R0
+    262                              break;
+   \   0000007E   0xE7E7             B        ??printk_6
+    263                          case ' ':
+    264                              flags_used |= FLAGS_SPACE;
+   \                     ??printk_8: (+1)
+   \   00000080   0x0038             MOVS     R0,R7
+   \   00000082   0x2704             MOVS     R7,#+4
+   \   00000084   0x4307             ORRS     R7,R7,R0
+    265                              break;
+   \   00000086   0xE7E3             B        ??printk_6
+    266                          case '0':
+    267                              flags_used |= FLAGS_ZERO;
+   \                     ??printk_12: (+1)
+   \   00000088   0x0038             MOVS     R0,R7
+   \   0000008A   0x2708             MOVS     R7,#+8
+   \   0000008C   0x4307             ORRS     R7,R7,R0
+    268                              break;
+   \   0000008E   0xE7DF             B        ??printk_6
+    269                          case '#':
+    270                              flags_used |= FLAGS_POUND;
+   \                     ??printk_9: (+1)
+   \   00000090   0x0038             MOVS     R0,R7
+   \   00000092   0x2710             MOVS     R7,#+16
+   \   00000094   0x4307             ORRS     R7,R7,R0
+    271                              break;
+   \   00000096   0xE7DB             B        ??printk_6
+    272                          default:
+    273                              /* we've gone one char too far */
+    274                              --p;
+   \                     ??printk_13: (+1)
+   \   00000098   0x1E6D             SUBS     R5,R5,#+1
+    275                              done = TRUE;
+   \   0000009A   0x2001             MOVS     R0,#+1
+   \   0000009C   0x9005             STR      R0,[SP, #+20]
+    276                              break;
+   \   0000009E   0xE7D7             B        ??printk_6
+    277                      }
+    278                  }
+    279          
+    280                  /*
+    281                   * Next check for minimum field width.
+    282                   */
+    283                  field_width = 0;
+   \                     ??printk_7: (+1)
+   \   000000A0   0x2000             MOVS     R0,#+0
+   \   000000A2   0x9001             STR      R0,[SP, #+4]
+    284                  done = FALSE;
+   \   000000A4   0x2000             MOVS     R0,#+0
+   \   000000A6   0x9005             STR      R0,[SP, #+20]
+    285                  while (!done)
+   \                     ??printk_14: (+1)
+   \   000000A8   0x9805             LDR      R0,[SP, #+20]
+   \   000000AA   0x2800             CMP      R0,#+0
+   \   000000AC   0xD112             BNE      ??printk_15
+    286                  {
+    287                      switch (c = *++p)
+   \   000000AE   0x1C6D             ADDS     R5,R5,#+1
+   \   000000B0   0x7828             LDRB     R0,[R5, #+0]
+   \   000000B2   0x9002             STR      R0,[SP, #+8]
+   \   000000B4   0x9802             LDR      R0,[SP, #+8]
+   \   000000B6   0x3830             SUBS     R0,R0,#+48
+   \   000000B8   0x2809             CMP      R0,#+9
+   \   000000BA   0xD807             BHI      ??printk_16
+    288                      {
+    289                          case '0':
+    290                          case '1':
+    291                          case '2':
+    292                          case '3':
+    293                          case '4':
+    294                          case '5':
+    295                          case '6':
+    296                          case '7':
+    297                          case '8':
+    298                          case '9':
+    299                              field_width = (field_width * 10) + (c - '0');
+   \                     ??printk_17: (+1)
+   \   000000BC   0x9801             LDR      R0,[SP, #+4]
+   \   000000BE   0x210A             MOVS     R1,#+10
+   \   000000C0   0x4348             MULS     R0,R1,R0
+   \   000000C2   0x9902             LDR      R1,[SP, #+8]
+   \   000000C4   0x1840             ADDS     R0,R0,R1
+   \   000000C6   0x3830             SUBS     R0,R0,#+48
+   \   000000C8   0x9001             STR      R0,[SP, #+4]
+    300                              break;
+   \   000000CA   0xE7ED             B        ??printk_14
+    301                          default:
+    302                              /* we've gone one char too far */
+    303                              --p;
+   \                     ??printk_16: (+1)
+   \   000000CC   0x1E6D             SUBS     R5,R5,#+1
+    304                              done = TRUE;
+   \   000000CE   0x2001             MOVS     R0,#+1
+   \   000000D0   0x9005             STR      R0,[SP, #+20]
+    305                              break;
+   \   000000D2   0xE7E9             B        ??printk_14
+    306                      }
+    307                  }
+    308          
+    309                  /*
+    310                   * Next check for the width and precision field separator.
+    311                   */
+    312                  if (*++p == '.')
+   \                     ??printk_15: (+1)
+   \   000000D4   0x1C6D             ADDS     R5,R5,#+1
+   \   000000D6   0x7828             LDRB     R0,[R5, #+0]
+   \   000000D8   0x282E             CMP      R0,#+46
+   \   000000DA   0xD10E             BNE      ??printk_18
+    313                  {
+    314          
+    315                      /*
+    316                       * Must get precision field width, if present.
+    317                       */
+    318                      done = FALSE;
+   \   000000DC   0x2000             MOVS     R0,#+0
+   \   000000DE   0x9005             STR      R0,[SP, #+20]
+    319                      while (!done)
+   \                     ??printk_19: (+1)
+   \   000000E0   0x9805             LDR      R0,[SP, #+20]
+   \   000000E2   0x2800             CMP      R0,#+0
+   \   000000E4   0xD10A             BNE      ??printk_20
+    320                      {
+    321                          switch (/* c = uncomment if used below */ *++p)
+   \   000000E6   0x1C6D             ADDS     R5,R5,#+1
+   \   000000E8   0x7828             LDRB     R0,[R5, #+0]
+   \   000000EA   0x3830             SUBS     R0,R0,#+48
+   \   000000EC   0x2809             CMP      R0,#+9
+   \   000000EE   0xD800             BHI      ??printk_21
+    322                          {
+    323                              case '0':
+    324                              case '1':
+    325                              case '2':
+    326                              case '3':
+    327                              case '4':
+    328                              case '5':
+    329                              case '6':
+    330                              case '7':
+    331                              case '8':
+    332                              case '9':
+    333          #if 0
+    334                                  precision_width = (precision_width * 10) +
+    335                                      (c - '0');
+    336          #endif
+    337                                  break;
+   \                     ??printk_22: (+1)
+   \   000000F0   0xE7F6             B        ??printk_19
+    338                              default:
+    339                                  /* we've gone one char too far */
+    340                                  --p;
+   \                     ??printk_21: (+1)
+   \   000000F2   0x1E6D             SUBS     R5,R5,#+1
+    341                                  done = TRUE;
+   \   000000F4   0x2001             MOVS     R0,#+1
+   \   000000F6   0x9005             STR      R0,[SP, #+20]
+    342                                  break;
+   \   000000F8   0xE7F2             B        ??printk_19
+    343                          }
+    344                      }
+    345                  }
+    346                  else
+    347                  {
+    348                      /* we've gone one char too far */
+    349                      --p;
+   \                     ??printk_18: (+1)
+   \   000000FA   0x1E6D             SUBS     R5,R5,#+1
+    350          #if 0
+    351                      precision_used = FALSE;
+    352                      precision_width = 0;
+    353          #endif
+    354                  }
+    355          
+    356                  /*
+    357                   * Check for the length modifier.
+    358                   */
+    359                  switch (*++p)
+   \                     ??printk_20: (+1)
+   \   000000FC   0x1C6D             ADDS     R5,R5,#+1
+   \   000000FE   0x7828             LDRB     R0,[R5, #+0]
+   \   00000100   0x284C             CMP      R0,#+76
+   \   00000102   0xD006             BEQ      ??printk_23
+   \   00000104   0x2868             CMP      R0,#+104
+   \   00000106   0xD002             BEQ      ??printk_24
+   \   00000108   0x286C             CMP      R0,#+108
+   \   0000010A   0xD001             BEQ      ??printk_25
+   \   0000010C   0xE002             B        ??printk_26
+    360                  {
+    361                      case 'h':
+    362                          break;
+   \                     ??printk_24: (+1)
+   \   0000010E   0xE002             B        ??printk_27
+    363                      case 'l':
+    364                          break;
+   \                     ??printk_25: (+1)
+   \   00000110   0xE001             B        ??printk_27
+    365                      case 'L':
+    366                          break;
+   \                     ??printk_23: (+1)
+   \   00000112   0xE000             B        ??printk_27
+    367                      default:
+    368                          /* we've gone one char too far */
+    369                          --p;
+   \                     ??printk_26: (+1)
+   \   00000114   0x1E6D             SUBS     R5,R5,#+1
+    370                          break;
+    371                  }
+    372          
+    373                  /*
+    374                   * Now we're ready to examine the format.
+    375                   */
+    376                  switch (c = *++p)
+   \                     ??printk_27: (+1)
+   \   00000116   0x1C6D             ADDS     R5,R5,#+1
+   \   00000118   0x7828             LDRB     R0,[R5, #+0]
+   \   0000011A   0x9002             STR      R0,[SP, #+8]
+   \   0000011C   0x9802             LDR      R0,[SP, #+8]
+   \   0000011E   0x2858             CMP      R0,#+88
+   \   00000120   0xD072             BEQ      ??printk_28
+   \   00000122   0x2862             CMP      R0,#+98
+   \   00000124   0xD100             BNE      .+4
+   \   00000126   0xE0CC             B        ??printk_29
+   \   00000128   0x2863             CMP      R0,#+99
+   \   0000012A   0xD100             BNE      .+4
+   \   0000012C   0xE116             B        ??printk_30
+   \   0000012E   0x2864             CMP      R0,#+100
+   \   00000130   0xD013             BEQ      ??printk_31
+   \   00000132   0x2869             CMP      R0,#+105
+   \   00000134   0xD011             BEQ      ??printk_31
+   \   00000136   0x286E             CMP      R0,#+110
+   \   00000138   0xD100             BNE      .+4
+   \   0000013A   0xE142             B        ??printk_32
+   \   0000013C   0x286F             CMP      R0,#+111
+   \   0000013E   0xD100             BNE      .+4
+   \   00000140   0xE0B4             B        ??printk_33
+   \   00000142   0x2870             CMP      R0,#+112
+   \   00000144   0xD100             BNE      .+4
+   \   00000146   0xE0C7             B        ??printk_34
+   \   00000148   0x2873             CMP      R0,#+115
+   \   0000014A   0xD100             BNE      .+4
+   \   0000014C   0xE110             B        ??printk_35
+   \   0000014E   0x2875             CMP      R0,#+117
+   \   00000150   0xD100             BNE      .+4
+   \   00000152   0xE0CC             B        ??printk_36
+   \   00000154   0x2878             CMP      R0,#+120
+   \   00000156   0xD057             BEQ      ??printk_28
+   \   00000158   0xE13A             B        ??printk_37
+    377                  {
+    378                      case 'd':
+    379                      case 'i':
+    380                          ival = (int)va_arg(ap, int);
+   \                     ??printk_31: (+1)
+   \   0000015A   0x6820             LDR      R0,[R4, #+0]
+   \   0000015C   0x1D24             ADDS     R4,R4,#+4
+   \   0000015E   0x9009             STR      R0,[SP, #+36]
+    381                          vlen = printk_mknumstr(vstr,&ival,TRUE,10);
+   \   00000160   0x230A             MOVS     R3,#+10
+   \   00000162   0x2201             MOVS     R2,#+1
+   \   00000164   0xA909             ADD      R1,SP,#+36
+   \   00000166   0xA80C             ADD      R0,SP,#+48
+   \   00000168   0x.... 0x....      BL       printk_mknumstr
+   \   0000016C   0x0006             MOVS     R6,R0
+    382                          vstrp = &vstr[vlen];
+   \   0000016E   0xA80C             ADD      R0,SP,#+48
+   \   00000170   0x1980             ADDS     R0,R0,R6
+   \   00000172   0x9008             STR      R0,[SP, #+32]
+    383          
+    384                          if (ival < 0)
+   \   00000174   0x9809             LDR      R0,[SP, #+36]
+   \   00000176   0x2800             CMP      R0,#+0
+   \   00000178   0xD503             BPL      ??printk_38
+    385                          {
+    386                              schar = '-';
+   \   0000017A   0x202D             MOVS     R0,#+45
+   \   0000017C   0x9004             STR      R0,[SP, #+16]
+    387                              ++vlen;
+   \   0000017E   0x1C76             ADDS     R6,R6,#+1
+   \   00000180   0xE00D             B        ??printk_39
+    388                          }
+    389                          else
+    390                          {
+    391                              if (IS_FLAG_PLUS(flags_used))
+   \                     ??printk_38: (+1)
+   \   00000182   0x07B8             LSLS     R0,R7,#+30
+   \   00000184   0xD503             BPL      ??printk_40
+    392                              {
+    393                                  schar = '+';
+   \   00000186   0x202B             MOVS     R0,#+43
+   \   00000188   0x9004             STR      R0,[SP, #+16]
+    394                                  ++vlen;
+   \   0000018A   0x1C76             ADDS     R6,R6,#+1
+   \   0000018C   0xE007             B        ??printk_39
+    395                              }
+    396                              else
+    397                              {
+    398                                  if (IS_FLAG_SPACE(flags_used))
+   \                     ??printk_40: (+1)
+   \   0000018E   0x0778             LSLS     R0,R7,#+29
+   \   00000190   0xD503             BPL      ??printk_41
+    399                                  {
+    400                                      schar = ' ';
+   \   00000192   0x2020             MOVS     R0,#+32
+   \   00000194   0x9004             STR      R0,[SP, #+16]
+    401                                      ++vlen;
+   \   00000196   0x1C76             ADDS     R6,R6,#+1
+   \   00000198   0xE001             B        ??printk_39
+    402                                  }
+    403                                  else
+    404                                  {
+    405                                      schar = 0;
+   \                     ??printk_41: (+1)
+   \   0000019A   0x2000             MOVS     R0,#+0
+   \   0000019C   0x9004             STR      R0,[SP, #+16]
+    406                                  }
+    407                              }
+    408                          }
+    409                          dschar = FALSE;
+   \                     ??printk_39: (+1)
+   \   0000019E   0x2000             MOVS     R0,#+0
+   \   000001A0   0x9006             STR      R0,[SP, #+24]
+    410                      
+    411                          /*
+    412                           * do the ZERO pad.
+    413                           */
+    414                          if (IS_FLAG_ZERO(flags_used))
+   \   000001A2   0x0738             LSLS     R0,R7,#+28
+   \   000001A4   0xD512             BPL      ??printk_42
+    415                          {
+    416                              if (schar)
+   \   000001A6   0x9804             LDR      R0,[SP, #+16]
+   \   000001A8   0x2800             CMP      R0,#+0
+   \   000001AA   0xD004             BEQ      ??printk_43
+    417                                  printk_putc(schar, &count, info);
+   \   000001AC   0x9A15             LDR      R2,[SP, #+84]
+   \   000001AE   0x4669             MOV      R1,SP
+   \   000001B0   0x9804             LDR      R0,[SP, #+16]
+   \   000001B2   0x.... 0x....      BL       printk_putc
+    418                              dschar = TRUE;
+   \                     ??printk_43: (+1)
+   \   000001B6   0x2001             MOVS     R0,#+1
+   \   000001B8   0x9006             STR      R0,[SP, #+24]
+    419                      
+    420                              printk_pad_zero (vlen, field_width, &count, info);
+   \   000001BA   0x9B15             LDR      R3,[SP, #+84]
+   \   000001BC   0x466A             MOV      R2,SP
+   \   000001BE   0x9901             LDR      R1,[SP, #+4]
+   \   000001C0   0x0030             MOVS     R0,R6
+   \   000001C2   0x.... 0x....      BL       printk_pad_zero
+    421                              vlen = field_width;
+   \   000001C6   0x9801             LDR      R0,[SP, #+4]
+   \   000001C8   0x0006             MOVS     R6,R0
+   \   000001CA   0xE011             B        ??printk_44
+    422                          }
+    423                          else
+    424                          {
+    425                              if (!IS_FLAG_MINUS(flags_used))
+   \                     ??printk_42: (+1)
+   \   000001CC   0x07F8             LSLS     R0,R7,#+31
+   \   000001CE   0xD40F             BMI      ??printk_44
+    426                              {
+    427                                  printk_pad_space (vlen, field_width, &count, info);
+   \   000001D0   0x9B15             LDR      R3,[SP, #+84]
+   \   000001D2   0x466A             MOV      R2,SP
+   \   000001D4   0x9901             LDR      R1,[SP, #+4]
+   \   000001D6   0x0030             MOVS     R0,R6
+   \   000001D8   0x.... 0x....      BL       printk_pad_space
+    428                      
+    429                                  if (schar)
+   \   000001DC   0x9804             LDR      R0,[SP, #+16]
+   \   000001DE   0x2800             CMP      R0,#+0
+   \   000001E0   0xD004             BEQ      ??printk_45
+    430                                      printk_putc(schar, &count, info);
+   \   000001E2   0x9A15             LDR      R2,[SP, #+84]
+   \   000001E4   0x4669             MOV      R1,SP
+   \   000001E6   0x9804             LDR      R0,[SP, #+16]
+   \   000001E8   0x.... 0x....      BL       printk_putc
+    431                                  dschar = TRUE;
+   \                     ??printk_45: (+1)
+   \   000001EC   0x2001             MOVS     R0,#+1
+   \   000001EE   0x9006             STR      R0,[SP, #+24]
+    432                              }
+    433                          }
+    434                      
+    435                          /* the string was built in reverse order, now display in */
+    436                          /* correct order */
+    437                          if (!dschar && schar)
+   \                     ??printk_44: (+1)
+   \   000001F0   0x9806             LDR      R0,[SP, #+24]
+   \   000001F2   0x2800             CMP      R0,#+0
+   \   000001F4   0xD107             BNE      ??printk_46
+   \   000001F6   0x9804             LDR      R0,[SP, #+16]
+   \   000001F8   0x2800             CMP      R0,#+0
+   \   000001FA   0xD004             BEQ      ??printk_46
+    438                          {
+    439                              printk_putc(schar, &count, info);
+   \   000001FC   0x9A15             LDR      R2,[SP, #+84]
+   \   000001FE   0x4669             MOV      R1,SP
+   \   00000200   0x9804             LDR      R0,[SP, #+16]
+   \   00000202   0x.... 0x....      BL       printk_putc
+    440                          }
+    441                          goto cont_xd;
+   \                     ??printk_46: (+1)
+   \   00000206   0xE092             B        ??printk_47
+    442          
+    443                      case 'x':
+    444                      case 'X':
+    445                          uval = (unsigned int)va_arg(ap, unsigned int);
+   \                     ??printk_28: (+1)
+   \   00000208   0x6820             LDR      R0,[R4, #+0]
+   \   0000020A   0x1D24             ADDS     R4,R4,#+4
+   \   0000020C   0x9003             STR      R0,[SP, #+12]
+    446                          vlen = printk_mknumstr(vstr,&uval,FALSE,16);
+   \   0000020E   0x2310             MOVS     R3,#+16
+   \   00000210   0x2200             MOVS     R2,#+0
+   \   00000212   0xA903             ADD      R1,SP,#+12
+   \   00000214   0xA80C             ADD      R0,SP,#+48
+   \   00000216   0x.... 0x....      BL       printk_mknumstr
+   \   0000021A   0x0006             MOVS     R6,R0
+    447                          vstrp = &vstr[vlen];
+   \   0000021C   0xA80C             ADD      R0,SP,#+48
+   \   0000021E   0x1980             ADDS     R0,R0,R6
+   \   00000220   0x9008             STR      R0,[SP, #+32]
+    448          
+    449                          dschar = FALSE;
+   \   00000222   0x2000             MOVS     R0,#+0
+   \   00000224   0x9006             STR      R0,[SP, #+24]
+    450                          if (IS_FLAG_ZERO(flags_used))
+   \   00000226   0x0738             LSLS     R0,R7,#+28
+   \   00000228   0xD516             BPL      ??printk_48
+    451                          {
+    452                              if (IS_FLAG_POUND(flags_used))
+   \   0000022A   0x06F8             LSLS     R0,R7,#+27
+   \   0000022C   0xD50B             BPL      ??printk_49
+    453                              {
+    454                                  printk_putc('0', &count, info);
+   \   0000022E   0x9A15             LDR      R2,[SP, #+84]
+   \   00000230   0x4669             MOV      R1,SP
+   \   00000232   0x2030             MOVS     R0,#+48
+   \   00000234   0x.... 0x....      BL       printk_putc
+    455                                  printk_putc('x', &count, info);
+   \   00000238   0x9A15             LDR      R2,[SP, #+84]
+   \   0000023A   0x4669             MOV      R1,SP
+   \   0000023C   0x2078             MOVS     R0,#+120
+   \   0000023E   0x.... 0x....      BL       printk_putc
+    456                                  /*vlen += 2;*/
+    457                                  dschar = TRUE;
+   \   00000242   0x2001             MOVS     R0,#+1
+   \   00000244   0x9006             STR      R0,[SP, #+24]
+    458                              }
+    459                              printk_pad_zero (vlen, field_width, &count, info);
+   \                     ??printk_49: (+1)
+   \   00000246   0x9B15             LDR      R3,[SP, #+84]
+   \   00000248   0x466A             MOV      R2,SP
+   \   0000024A   0x9901             LDR      R1,[SP, #+4]
+   \   0000024C   0x0030             MOVS     R0,R6
+   \   0000024E   0x.... 0x....      BL       printk_pad_zero
+    460                              vlen = field_width;
+   \   00000252   0x9801             LDR      R0,[SP, #+4]
+   \   00000254   0x0006             MOVS     R6,R0
+   \   00000256   0xE018             B        ??printk_50
+    461                          }
+    462                          else
+    463                          {
+    464                              if (!IS_FLAG_MINUS(flags_used))
+   \                     ??printk_48: (+1)
+   \   00000258   0x07F8             LSLS     R0,R7,#+31
+   \   0000025A   0xD416             BMI      ??printk_50
+    465                              {
+    466                                  if (IS_FLAG_POUND(flags_used))
+   \   0000025C   0x06F8             LSLS     R0,R7,#+27
+   \   0000025E   0xD500             BPL      ??printk_51
+    467                                  {
+    468                                      vlen += 2;
+   \   00000260   0x1CB6             ADDS     R6,R6,#+2
+    469                                  }
+    470                                  printk_pad_space (vlen, field_width, &count, info);
+   \                     ??printk_51: (+1)
+   \   00000262   0x9B15             LDR      R3,[SP, #+84]
+   \   00000264   0x466A             MOV      R2,SP
+   \   00000266   0x9901             LDR      R1,[SP, #+4]
+   \   00000268   0x0030             MOVS     R0,R6
+   \   0000026A   0x.... 0x....      BL       printk_pad_space
+    471                                  if (IS_FLAG_POUND(flags_used))
+   \   0000026E   0x06F8             LSLS     R0,R7,#+27
+   \   00000270   0xD50B             BPL      ??printk_50
+    472                                  {
+    473                                      printk_putc('0', &count, info);
+   \   00000272   0x9A15             LDR      R2,[SP, #+84]
+   \   00000274   0x4669             MOV      R1,SP
+   \   00000276   0x2030             MOVS     R0,#+48
+   \   00000278   0x.... 0x....      BL       printk_putc
+    474                                      printk_putc('x', &count, info);
+   \   0000027C   0x9A15             LDR      R2,[SP, #+84]
+   \   0000027E   0x4669             MOV      R1,SP
+   \   00000280   0x2078             MOVS     R0,#+120
+   \   00000282   0x.... 0x....      BL       printk_putc
+    475                                      dschar = TRUE;
+   \   00000286   0x2001             MOVS     R0,#+1
+   \   00000288   0x9006             STR      R0,[SP, #+24]
+    476                                  }
+    477                              }
+    478                          }
+    479          
+    480                          if ((IS_FLAG_POUND(flags_used)) && !dschar)
+   \                     ??printk_50: (+1)
+   \   0000028A   0x06F8             LSLS     R0,R7,#+27
+   \   0000028C   0xD50D             BPL      ??printk_52
+   \   0000028E   0x9806             LDR      R0,[SP, #+24]
+   \   00000290   0x2800             CMP      R0,#+0
+   \   00000292   0xD10A             BNE      ??printk_52
+    481                          {
+    482                              printk_putc('0', &count, info);
+   \   00000294   0x9A15             LDR      R2,[SP, #+84]
+   \   00000296   0x4669             MOV      R1,SP
+   \   00000298   0x2030             MOVS     R0,#+48
+   \   0000029A   0x.... 0x....      BL       printk_putc
+    483                              printk_putc('x', &count, info);
+   \   0000029E   0x9A15             LDR      R2,[SP, #+84]
+   \   000002A0   0x4669             MOV      R1,SP
+   \   000002A2   0x2078             MOVS     R0,#+120
+   \   000002A4   0x.... 0x....      BL       printk_putc
+    484                              vlen += 2;
+   \   000002A8   0x1CB6             ADDS     R6,R6,#+2
+    485                          }
+    486                          goto cont_xd;
+   \                     ??printk_52: (+1)
+   \   000002AA   0xE040             B        ??printk_47
+    487          
+    488                      case 'o':
+    489                          uval = (unsigned int)va_arg(ap, unsigned int);
+   \                     ??printk_33: (+1)
+   \   000002AC   0x6820             LDR      R0,[R4, #+0]
+   \   000002AE   0x1D24             ADDS     R4,R4,#+4
+   \   000002B0   0x9003             STR      R0,[SP, #+12]
+    490                          vlen = printk_mknumstr(vstr,&uval,FALSE,8);
+   \   000002B2   0x2308             MOVS     R3,#+8
+   \   000002B4   0x2200             MOVS     R2,#+0
+   \   000002B6   0xA903             ADD      R1,SP,#+12
+   \   000002B8   0xA80C             ADD      R0,SP,#+48
+   \   000002BA   0x.... 0x....      BL       printk_mknumstr
+   \   000002BE   0x0006             MOVS     R6,R0
+    491                          goto cont_u;
+   \   000002C0   0xE01F             B        ??printk_53
+    492                      case 'b':
+    493                          uval = (unsigned int)va_arg(ap, unsigned int);
+   \                     ??printk_29: (+1)
+   \   000002C2   0x6820             LDR      R0,[R4, #+0]
+   \   000002C4   0x1D24             ADDS     R4,R4,#+4
+   \   000002C6   0x9003             STR      R0,[SP, #+12]
+    494                          vlen = printk_mknumstr(vstr,&uval,FALSE,2);
+   \   000002C8   0x2302             MOVS     R3,#+2
+   \   000002CA   0x2200             MOVS     R2,#+0
+   \   000002CC   0xA903             ADD      R1,SP,#+12
+   \   000002CE   0xA80C             ADD      R0,SP,#+48
+   \   000002D0   0x.... 0x....      BL       printk_mknumstr
+   \   000002D4   0x0006             MOVS     R6,R0
+    495                          goto cont_u;
+   \   000002D6   0xE014             B        ??printk_53
+    496                      case 'p':
+    497                          uval = (unsigned int)va_arg(ap, void *);
+   \                     ??printk_34: (+1)
+   \   000002D8   0x6820             LDR      R0,[R4, #+0]
+   \   000002DA   0x1D24             ADDS     R4,R4,#+4
+   \   000002DC   0x9003             STR      R0,[SP, #+12]
+    498                          vlen = printk_mknumstr(vstr,&uval,FALSE,16);
+   \   000002DE   0x2310             MOVS     R3,#+16
+   \   000002E0   0x2200             MOVS     R2,#+0
+   \   000002E2   0xA903             ADD      R1,SP,#+12
+   \   000002E4   0xA80C             ADD      R0,SP,#+48
+   \   000002E6   0x.... 0x....      BL       printk_mknumstr
+   \   000002EA   0x0006             MOVS     R6,R0
+    499                          goto cont_u;
+   \   000002EC   0xE009             B        ??printk_53
+    500                      case 'u':
+    501                          uval = (unsigned int)va_arg(ap, unsigned int);
+   \                     ??printk_36: (+1)
+   \   000002EE   0x6820             LDR      R0,[R4, #+0]
+   \   000002F0   0x1D24             ADDS     R4,R4,#+4
+   \   000002F2   0x9003             STR      R0,[SP, #+12]
+    502                          vlen = printk_mknumstr(vstr,&uval,FALSE,10);
+   \   000002F4   0x230A             MOVS     R3,#+10
+   \   000002F6   0x2200             MOVS     R2,#+0
+   \   000002F8   0xA903             ADD      R1,SP,#+12
+   \   000002FA   0xA80C             ADD      R0,SP,#+48
+   \   000002FC   0x.... 0x....      BL       printk_mknumstr
+   \   00000300   0x0006             MOVS     R6,R0
+    503          
+    504                          cont_u:
+    505                              vstrp = &vstr[vlen];
+   \                     ??printk_53: (+1)
+   \   00000302   0xA80C             ADD      R0,SP,#+48
+   \   00000304   0x1980             ADDS     R0,R0,R6
+   \   00000306   0x9008             STR      R0,[SP, #+32]
+    506          
+    507                              if (IS_FLAG_ZERO(flags_used))
+   \   00000308   0x0738             LSLS     R0,R7,#+28
+   \   0000030A   0xD508             BPL      ??printk_54
+    508                              {
+    509                                  printk_pad_zero (vlen, field_width, &count, info);
+   \   0000030C   0x9B15             LDR      R3,[SP, #+84]
+   \   0000030E   0x466A             MOV      R2,SP
+   \   00000310   0x9901             LDR      R1,[SP, #+4]
+   \   00000312   0x0030             MOVS     R0,R6
+   \   00000314   0x.... 0x....      BL       printk_pad_zero
+    510                                  vlen = field_width;
+   \   00000318   0x9801             LDR      R0,[SP, #+4]
+   \   0000031A   0x0006             MOVS     R6,R0
+   \   0000031C   0xE007             B        ??printk_47
+    511                              }
+    512                              else
+    513                              {
+    514                                  if (!IS_FLAG_MINUS(flags_used))
+   \                     ??printk_54: (+1)
+   \   0000031E   0x07F8             LSLS     R0,R7,#+31
+   \   00000320   0xD405             BMI      ??printk_47
+    515                                  {
+    516                                      printk_pad_space (vlen, field_width, &count, info);
+   \   00000322   0x9B15             LDR      R3,[SP, #+84]
+   \   00000324   0x466A             MOV      R2,SP
+   \   00000326   0x9901             LDR      R1,[SP, #+4]
+   \   00000328   0x0030             MOVS     R0,R6
+   \   0000032A   0x.... 0x....      BL       printk_pad_space
+    517                                  }
+    518                              }
+    519          
+    520                          cont_xd:
+    521                              while (*vstrp)
+   \                     ??printk_47: (+1)
+   \   0000032E   0x9808             LDR      R0,[SP, #+32]
+   \   00000330   0x7800             LDRB     R0,[R0, #+0]
+   \   00000332   0x2800             CMP      R0,#+0
+   \   00000334   0xD009             BEQ      ??printk_55
+    522                                  printk_putc(*vstrp--, &count, info);
+   \   00000336   0x9A15             LDR      R2,[SP, #+84]
+   \   00000338   0x4669             MOV      R1,SP
+   \   0000033A   0x9808             LDR      R0,[SP, #+32]
+   \   0000033C   0x7800             LDRB     R0,[R0, #+0]
+   \   0000033E   0x.... 0x....      BL       printk_putc
+   \   00000342   0x9808             LDR      R0,[SP, #+32]
+   \   00000344   0x1E40             SUBS     R0,R0,#+1
+   \   00000346   0x9008             STR      R0,[SP, #+32]
+   \   00000348   0xE7F1             B        ??printk_47
+    523          
+    524                              if (IS_FLAG_MINUS(flags_used))
+   \                     ??printk_55: (+1)
+   \   0000034A   0x07F8             LSLS     R0,R7,#+31
+   \   0000034C   0xD505             BPL      ??printk_56
+    525                              {
+    526                                  printk_pad_space (vlen, field_width, &count, info);
+   \   0000034E   0x9B15             LDR      R3,[SP, #+84]
+   \   00000350   0x466A             MOV      R2,SP
+   \   00000352   0x9901             LDR      R1,[SP, #+4]
+   \   00000354   0x0030             MOVS     R0,R6
+   \   00000356   0x.... 0x....      BL       printk_pad_space
+    527                              }
+    528                          break;
+   \                     ??printk_56: (+1)
+   \   0000035A   0xE03E             B        ??printk_5
+    529          
+    530                      case 'c':
+    531                          cval = (char)va_arg(ap, unsigned int);
+   \                     ??printk_30: (+1)
+   \   0000035C   0x6820             LDR      R0,[R4, #+0]
+   \   0000035E   0x1D24             ADDS     R4,R4,#+4
+   \   00000360   0xB2C0             UXTB     R0,R0
+   \   00000362   0x900A             STR      R0,[SP, #+40]
+    532                          printk_putc(cval,&count, info);
+   \   00000364   0x9A15             LDR      R2,[SP, #+84]
+   \   00000366   0x4669             MOV      R1,SP
+   \   00000368   0x980A             LDR      R0,[SP, #+40]
+   \   0000036A   0x.... 0x....      BL       printk_putc
+    533                          break;
+   \   0000036E   0xE034             B        ??printk_5
+    534                      case 's':
+    535                          sval = (char *)va_arg(ap, char *);
+   \                     ??printk_35: (+1)
+   \   00000370   0x6820             LDR      R0,[R4, #+0]
+   \   00000372   0x1D24             ADDS     R4,R4,#+4
+   \   00000374   0x9007             STR      R0,[SP, #+28]
+    536                          if (sval)
+   \   00000376   0x9807             LDR      R0,[SP, #+28]
+   \   00000378   0x2800             CMP      R0,#+0
+   \   0000037A   0xD021             BEQ      ??printk_57
+    537                          {
+    538                              vlen = strlen(sval);
+   \   0000037C   0x9807             LDR      R0,[SP, #+28]
+   \   0000037E   0x.... 0x....      BL       strlen
+   \   00000382   0x0006             MOVS     R6,R0
+    539                              if (!IS_FLAG_MINUS(flags_used))
+   \   00000384   0x07F8             LSLS     R0,R7,#+31
+   \   00000386   0xD405             BMI      ??printk_58
+    540                              {
+    541                                  printk_pad_space (vlen, field_width, &count, info);
+   \   00000388   0x9B15             LDR      R3,[SP, #+84]
+   \   0000038A   0x466A             MOV      R2,SP
+   \   0000038C   0x9901             LDR      R1,[SP, #+4]
+   \   0000038E   0x0030             MOVS     R0,R6
+   \   00000390   0x.... 0x....      BL       printk_pad_space
+    542                              }
+    543                              while (*sval)
+   \                     ??printk_58: (+1)
+   \   00000394   0x9807             LDR      R0,[SP, #+28]
+   \   00000396   0x7800             LDRB     R0,[R0, #+0]
+   \   00000398   0x2800             CMP      R0,#+0
+   \   0000039A   0xD009             BEQ      ??printk_59
+    544                                  printk_putc(*sval++,&count, info);
+   \   0000039C   0x9A15             LDR      R2,[SP, #+84]
+   \   0000039E   0x4669             MOV      R1,SP
+   \   000003A0   0x9807             LDR      R0,[SP, #+28]
+   \   000003A2   0x7800             LDRB     R0,[R0, #+0]
+   \   000003A4   0x.... 0x....      BL       printk_putc
+   \   000003A8   0x9807             LDR      R0,[SP, #+28]
+   \   000003AA   0x1C40             ADDS     R0,R0,#+1
+   \   000003AC   0x9007             STR      R0,[SP, #+28]
+   \   000003AE   0xE7F1             B        ??printk_58
+    545                              if (IS_FLAG_MINUS(flags_used))
+   \                     ??printk_59: (+1)
+   \   000003B0   0x07F8             LSLS     R0,R7,#+31
+   \   000003B2   0xD505             BPL      ??printk_57
+    546                              {
+    547                                  printk_pad_space (vlen, field_width, &count, info);
+   \   000003B4   0x9B15             LDR      R3,[SP, #+84]
+   \   000003B6   0x466A             MOV      R2,SP
+   \   000003B8   0x9901             LDR      R1,[SP, #+4]
+   \   000003BA   0x0030             MOVS     R0,R6
+   \   000003BC   0x.... 0x....      BL       printk_pad_space
+    548                              }
+    549                          }
+    550                          break;
+   \                     ??printk_57: (+1)
+   \   000003C0   0xE00B             B        ??printk_5
+    551                      case 'n':
+    552                          ivalp = (int *)va_arg(ap, int *);
+   \                     ??printk_32: (+1)
+   \   000003C2   0x6820             LDR      R0,[R4, #+0]
+   \   000003C4   0x1D24             ADDS     R4,R4,#+4
+   \   000003C6   0x900B             STR      R0,[SP, #+44]
+    553                          *ivalp = count;
+   \   000003C8   0x9800             LDR      R0,[SP, #+0]
+   \   000003CA   0x990B             LDR      R1,[SP, #+44]
+   \   000003CC   0x6008             STR      R0,[R1, #+0]
+    554                          break;
+   \   000003CE   0xE004             B        ??printk_5
+    555                      default:
+    556                          printk_putc(c,&count, info);
+   \                     ??printk_37: (+1)
+   \   000003D0   0x9A15             LDR      R2,[SP, #+84]
+   \   000003D2   0x4669             MOV      R1,SP
+   \   000003D4   0x9802             LDR      R0,[SP, #+8]
+   \   000003D6   0x.... 0x....      BL       printk_putc
+    557                          break;
+    558                  }
+    559              }
+   \                     ??printk_5: (+1)
+   \   000003DA   0x1C6D             ADDS     R5,R5,#+1
+   \   000003DC   0xE617             B        ??printk_0
+    560              return count;
+   \                     ??printk_1: (+1)
+   \   000003DE   0x9800             LDR      R0,[SP, #+0]
+   \   000003E0   0xB017             ADD      SP,SP,#+92
+   \   000003E2   0xBDF0             POP      {R4-R7,PC}       ;; return
+    561          }
+    562          
+    563          /********************************************************************/
+    564          #ifdef CW
+    565          int
+    566          printf (const char *fmt, ...)
+    567          #else
+
+   \                                 In section .text, align 2, keep-with-next
+    568          int
+    569          printf (const char *fmt, ...)
+    570          #endif
+    571          {
+   \                     printf: (+1)
+   \   00000000   0xB40E             PUSH     {R1-R3}
+   \   00000002   0xB57E             PUSH     {R1-R6,LR}
+   \   00000004   0x0005             MOVS     R5,R0
+    572              va_list ap;
+    573              int rvalue;
+    574              PRINTK_INFO info;
+    575          
+    576          
+    577              info.dest = DEST_CONSOLE;
+   \   00000006   0x2001             MOVS     R0,#+1
+   \   00000008   0x9000             STR      R0,[SP, #+0]
+    578              info.func = &out_char;
+   \   0000000A   0x....             LDR      R0,??DataTable0
+   \   0000000C   0x9001             STR      R0,[SP, #+4]
+    579              /*
+    580               * Initialize the pointer to the variable length argument list.
+    581               */
+    582              va_start(ap, fmt);
+   \   0000000E   0xA807             ADD      R0,SP,#+28
+   \   00000010   0x0006             MOVS     R6,R0
+    583              rvalue = printk(&info, fmt, ap);
+   \   00000012   0x0032             MOVS     R2,R6
+   \   00000014   0x0029             MOVS     R1,R5
+   \   00000016   0x4668             MOV      R0,SP
+   \   00000018   0x.... 0x....      BL       printk
+   \   0000001C   0x0004             MOVS     R4,R0
+    584              /*
+    585               * Cleanup the variable length argument list.
+    586               */
+    587              va_end(ap);
+    588              return rvalue;
+   \   0000001E   0x0020             MOVS     R0,R4
+   \   00000020   0xB003             ADD      SP,SP,#+12
+   \   00000022   0x9903             LDR      R1,[SP, #+12]
+   \   00000024   0xBC70             POP      {R4-R6}
+   \   00000026   0xB004             ADD      SP,SP,#+16
+   \   00000028   0x4708             BX       R1               ;; return
+    589          }
+    590          
+    591          /********************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+    592          int
+    593          sprintf (char *s, const char *fmt, ...)
+    594          {
+   \                     sprintf: (+1)
+   \   00000000   0xB40C             PUSH     {R2,R3}
+   \   00000002   0xB5FE             PUSH     {R1-R7,LR}
+   \   00000004   0x0005             MOVS     R5,R0
+   \   00000006   0x000E             MOVS     R6,R1
+    595              va_list ap;
+    596              int rvalue = 0;
+   \   00000008   0x2400             MOVS     R4,#+0
+    597              PRINTK_INFO info;
+    598          
+    599              /*
+    600               * Initialize the pointer to the variable length argument list.
+    601               */
+    602              if (s != 0)
+   \   0000000A   0x2D00             CMP      R5,#+0
+   \   0000000C   0xD00D             BEQ      ??sprintf_0
+    603              {
+    604                  info.dest = DEST_STRING;
+   \   0000000E   0x2002             MOVS     R0,#+2
+   \   00000010   0x9000             STR      R0,[SP, #+0]
+    605                  info.loc = s;
+   \   00000012   0x9502             STR      R5,[SP, #+8]
+    606                  va_start(ap, fmt);
+   \   00000014   0xA808             ADD      R0,SP,#+32
+   \   00000016   0x0007             MOVS     R7,R0
+    607                  rvalue = printk(&info, fmt, ap);
+   \   00000018   0x003A             MOVS     R2,R7
+   \   0000001A   0x0031             MOVS     R1,R6
+   \   0000001C   0x4668             MOV      R0,SP
+   \   0000001E   0x.... 0x....      BL       printk
+   \   00000022   0x0004             MOVS     R4,R0
+    608                  *info.loc = '\0';
+   \   00000024   0x2000             MOVS     R0,#+0
+   \   00000026   0x9902             LDR      R1,[SP, #+8]
+   \   00000028   0x7008             STRB     R0,[R1, #+0]
+    609                  va_end(ap);
+    610              }
+    611              return rvalue;
+   \                     ??sprintf_0: (+1)
+   \   0000002A   0x0020             MOVS     R0,R4
+   \   0000002C   0xB003             ADD      SP,SP,#+12
+   \   0000002E   0x9904             LDR      R1,[SP, #+16]
+   \   00000030   0xBCF0             POP      {R4-R7}
+   \   00000032   0xB003             ADD      SP,SP,#+12
+   \   00000034   0x4708             BX       R1               ;; return
+    612          }
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable0:
+   \   00000000   0x........         DC32     out_char
+    613          
+    614          /********************************************************************/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      40   printf
+        40   -> printk
+     112   printk
+       112   -> printk_mknumstr
+       112   -> printk_pad_space
+       112   -> printk_pad_zero
+       112   -> printk_putc
+       112   -> strlen
+      52   printk_mknumstr
+        52 __aeabi_idiv
+        52 __aeabi_uidiv
+      24   printk_pad_space
+        24   -> printk_putc
+      24   printk_pad_zero
+        24   -> printk_putc
+      16   printk_putc
+        16   -- Indirect call
+      40   sprintf
+        40   -> printk
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable0
+      42  printf
+     996  printk
+     178  printk_mknumstr
+      30  printk_pad_space
+      30  printk_pad_zero
+      52  printk_putc
+      54  sprintf
+
+ 
+ 1 386 bytes in section .text
+ 
+ 1 386 bytes of CODE memory
+
+Errors: none
+Warnings: none

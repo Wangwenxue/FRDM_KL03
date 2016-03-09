@@ -1,0 +1,240 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V7.40.3.8902/W32 for ARM        09/Mar/2016  19:35:24
+# Copyright 1999-2015 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\src\drivers\adc\adc.c
+#    Command line =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\src\drivers\adc\adc.c
+#        -D IAR -D FREEDOM -lCN
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\List\
+#        -o
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\Obj\
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M0+ -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench
+#        7.2\arm\INC\c\DLib_Config_Normal.h" -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\projects\adc\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\common\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\cpu\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\cpu\headers\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\lptmr\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\mcg\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\pmc\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\rcm\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\smc\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\uart\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\wdog\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\cmp\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\platforms\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\adc\
+#        -On --use_c++_inline
+#    List file    =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\List\adc.lst
+#    Object file  =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\Obj\adc.o
+#
+###############################################################################
+
+C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\src\drivers\adc\adc.c
+      1          /*
+      2           * File:        adc.c
+      3           * Purpose:     Provide common adc routines
+      4           *
+      5           * Notes:       
+      6           *              
+      7           */
+      8          
+      9          #include "common.h"
+     10          #include "adc.h"
+     11          
+     12          /****************************************************************
+     13                            initial the ADC module
+     14          *****************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     15          void InitADC( void )
+     16          {
+     17          	SIM_SCGC6 |= SIM_SCGC6_ADC0_MASK;  // enable ADC0 clock
+   \                     InitADC: (+1)
+   \   00000000   0x....             LDR      R0,??DataTable3  ;; 0x4004803c
+   \   00000002   0x6800             LDR      R0,[R0, #+0]
+   \   00000004   0x2180             MOVS     R1,#+128
+   \   00000006   0x0509             LSLS     R1,R1,#+20       ;; #+134217728
+   \   00000008   0x4301             ORRS     R1,R1,R0
+   \   0000000A   0x....             LDR      R0,??DataTable3  ;; 0x4004803c
+   \   0000000C   0x6001             STR      R1,[R0, #+0]
+     18          
+     19            	ADC0_CFG1 = ADC_CFG1_ADIV(1)|
+     20            				ADC_CFG1_MODE(2)|
+     21            				ADC_CFG1_ADICLK(3);
+   \   0000000E   0x202B             MOVS     R0,#+43
+   \   00000010   0x....             LDR      R1,??DataTable3_1  ;; 0x4003b008
+   \   00000012   0x6008             STR      R0,[R1, #+0]
+     22            	
+     23          }
+   \   00000014   0x4770             BX       LR               ;; return
+     24                  
+     25                    
+     26          /****************************************************************
+     27                                software trigger channel x
+     28          *****************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     29          unsigned char TriggerADC(unsigned char Channel)
+     30          {
+   \                     TriggerADC: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+   \   00000002   0x0001             MOVS     R1,R0
+     31            
+     32            if(Channel == 0x1B)                                          // Bandgap is selected as input
+   \   00000004   0xB2C9             UXTB     R1,R1
+   \   00000006   0x291B             CMP      R1,#+27
+   \   00000008   0xD105             BNE      ??TriggerADC_0
+     33                PMC_REGSC |= PMC_REGSC_BGBE_MASK;                        // Bandgap buffer enabled
+   \   0000000A   0x....             LDR      R0,??DataTable3_2  ;; 0x4007d002
+   \   0000000C   0x7800             LDRB     R0,[R0, #+0]
+   \   0000000E   0x2201             MOVS     R2,#+1
+   \   00000010   0x4302             ORRS     R2,R2,R0
+   \   00000012   0x....             LDR      R0,??DataTable3_2  ;; 0x4007d002
+   \   00000014   0x7002             STRB     R2,[R0, #+0]
+     34             ADC0_SC1A = Channel;                   // update the channel value
+   \                     ??TriggerADC_0: (+1)
+   \   00000016   0xB2C9             UXTB     R1,R1
+   \   00000018   0x....             LDR      R0,??DataTable3_3  ;; 0x4003b000
+   \   0000001A   0x6001             STR      R1,[R0, #+0]
+     35             return 1;
+   \   0000001C   0x2001             MOVS     R0,#+1
+   \   0000001E   0xBD00             POP      {PC}             ;; return
+     36          }
+     37          
+     38          /****************************************************************
+     39                                ADC Read
+     40          *****************************************************************/
+
+   \                                 In section .text, align 2, keep-with-next
+     41          unsigned int ReadADCPoll(void)
+     42          {
+   \                     ReadADCPoll: (+1)
+   \   00000000   0xB500             PUSH     {LR}
+     43              while((ADC0_SC1A & ADC_SC1_COCO_MASK) == 0);
+   \                     ??ReadADCPoll_0: (+1)
+   \   00000002   0x....             LDR      R0,??DataTable3_3  ;; 0x4003b000
+   \   00000004   0x6800             LDR      R0,[R0, #+0]
+   \   00000006   0x0600             LSLS     R0,R0,#+24
+   \   00000008   0xD5FB             BPL      ??ReadADCPoll_0
+     44              //ADC0_SC1A &= ~ ADC0_SC1A_COCO_MASK;
+     45              return ADC0_RA;
+   \   0000000A   0x....             LDR      R0,??DataTable3_4  ;; 0x4003b010
+   \   0000000C   0x6800             LDR      R0,[R0, #+0]
+   \   0000000E   0xBD00             POP      {PC}             ;; return
+     46          }
+     47          
+
+   \                                 In section .text, align 2, keep-with-next
+     48          void ADC_ISR(void)
+     49          {
+   \                     ADC_ISR: (+1)
+   \   00000000   0xB580             PUSH     {R7,LR}
+     50            printf("\n ADC sample data: %x.\n", ADC0_RA);
+   \   00000002   0x....             LDR      R0,??DataTable3_4  ;; 0x4003b010
+   \   00000004   0x6801             LDR      R1,[R0, #+0]
+   \   00000006   0x....             LDR      R0,??DataTable3_5
+   \   00000008   0x.... 0x....      BL       printf
+     51          }
+   \   0000000C   0xBD01             POP      {R0,PC}          ;; return
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3:
+   \   00000000   0x4004803C         DC32     0x4004803c
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_1:
+   \   00000000   0x4003B008         DC32     0x4003b008
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_2:
+   \   00000000   0x4007D002         DC32     0x4007d002
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_3:
+   \   00000000   0x4003B000         DC32     0x4003b000
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_4:
+   \   00000000   0x4003B010         DC32     0x4003b010
+
+   \                                 In section .text, align 4, keep-with-next
+   \                     ??DataTable3_5:
+   \   00000000   0x........         DC32     ?_0
+
+   \                                 In section .rodata, align 4
+   \                     ?_0:
+   \   00000000   0x0A 0x20          DC8 "\012 ADC sample data: %x.\012"
+   \              0x41 0x44    
+   \              0x43 0x20    
+   \              0x73 0x61    
+   \              0x6D 0x70    
+   \              0x6C 0x65    
+   \              0x20 0x64    
+   \              0x61 0x74    
+   \              0x61 0x3A    
+   \              0x20 0x25    
+   \              0x78 0x2E    
+   \              0x0A 0x00    
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+       8   ADC_ISR
+         8   -> printf
+       0   InitADC
+       4   ReadADCPoll
+       4   TriggerADC
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+       4  ??DataTable3
+       4  ??DataTable3_1
+       4  ??DataTable3_2
+       4  ??DataTable3_3
+       4  ??DataTable3_4
+       4  ??DataTable3_5
+      24  ?_0
+      14  ADC_ISR
+      22  InitADC
+      16  ReadADCPoll
+      32  TriggerADC
+
+ 
+  24 bytes in section .rodata
+ 108 bytes in section .text
+ 
+ 108 bytes of CODE  memory
+  24 bytes of CONST memory
+
+Errors: none
+Warnings: none

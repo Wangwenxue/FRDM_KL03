@@ -1,0 +1,286 @@
+###############################################################################
+#
+# IAR ANSI C/C++ Compiler V7.40.3.8902/W32 for ARM        09/Mar/2016  19:35:26
+# Copyright 1999-2015 IAR Systems AB.
+#
+#    Cpu mode     =  thumb
+#    Endian       =  little
+#    Source file  =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\src\common\startup.c
+#    Command line =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\src\common\startup.c
+#        -D IAR -D FREEDOM -lCN
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\List\
+#        -o
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\Obj\
+#        --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa
+#        --no_clustering --no_scheduling --debug --endian=little
+#        --cpu=Cortex-M0+ -e --fpu=None --dlib_config "C:\Program Files
+#        (x86)\IAR Systems\Embedded Workbench
+#        7.2\arm\INC\c\DLib_Config_Normal.h" -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\projects\adc\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\common\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\cpu\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\cpu\headers\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\lptmr\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\mcg\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\pmc\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\rcm\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\smc\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\uart\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\wdog\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\cmp\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\platforms\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\
+#        -I
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\..\..\..\src\drivers\adc\
+#        -On --use_c++_inline
+#    List file    =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\List\startup.lst
+#    Object file  =  
+#        C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\build\iar\adc\FLASH_32KB\Obj\startup.o
+#
+###############################################################################
+
+C:\Users\b51443\Desktop\GitResp\FRDM_KL03\kl03-frdm-demo\src\common\startup.c
+      1          /*
+      2           * File:    startup.c
+      3           * Purpose: Generic Kinetis startup code
+      4           *
+      5           * Notes:
+      6           */
+      7          
+      8          #include "common.h"
+      9          
+     10          #if (defined(IAR))
+     11          	#pragma section = ".data"
+     12          	#pragma section = ".data_init"
+     13          	#pragma section = ".bss"
+     14          	#pragma section = "CodeRelocate"
+     15          	#pragma section = "CodeRelocateRam"
+     16          #endif
+     17          
+     18          /********************************************************************/
+
+   \                                 In section .text, align 4, keep-with-next
+     19          void
+     20          common_startup(void)
+     21          {
+   \                     common_startup: (+1)
+   \   00000000   0xB5FC             PUSH     {R2-R7,LR}
+     22          
+     23          #if (defined(CW))	
+     24              extern char __START_BSS[];
+     25              extern char __END_BSS[];
+     26              extern uint32 __DATA_ROM[];
+     27              extern uint32 __DATA_RAM[];
+     28              extern char __DATA_END[];
+     29          #endif
+     30          
+     31              /* Declare a counter we'll use in all of the copy loops */
+     32              uint32 n;
+     33          
+     34          #ifndef __CC_ARM
+     35              /* Declare pointers for various data sections. These pointers
+     36               * are initialized using values pulled in from the linker file
+     37               */
+     38              uint8 * data_ram, * data_rom, * data_rom_end;
+     39              uint8 * bss_start, * bss_end;
+     40          #endif
+     41          
+     42          #if (defined(__CC_ARM))
+     43          	extern uint32 Image$$VECTOR_ROM$$Base[];
+     44          	extern uint32 Image$$VECTOR_RAM$$Base[];
+     45          	#define __VECTOR_TABLE Image$$VECTOR_ROM$$Base  
+     46          	#define __VECTOR_RAM Image$$VECTOR_RAM$$Base  
+     47          #endif
+     48          
+     49              /* Addresses for VECTOR_TABLE and VECTOR_RAM come from the linker file */
+     50              extern uint32 __VECTOR_TABLE[];
+     51              extern uint32 __VECTOR_RAM[];
+     52          
+     53              /* Copy the vector table to RAM */
+     54              if (__VECTOR_RAM != __VECTOR_TABLE)
+   \   00000002   0x4C22             LDR      R4,??common_startup_0
+   \   00000004   0x4D22             LDR      R5,??common_startup_0+0x4
+   \   00000006   0x42AC             CMP      R4,R5
+   \   00000008   0xD00F             BEQ      ??common_startup_1
+     55              {
+     56                  for (n = 0; n < 0x104; n++)
+   \   0000000A   0x2400             MOVS     R4,#+0
+   \   0000000C   0x0023             MOVS     R3,R4
+   \                     ??common_startup_2: (+1)
+   \   0000000E   0x2482             MOVS     R4,#+130
+   \   00000010   0x0064             LSLS     R4,R4,#+1        ;; #+260
+   \   00000012   0x42A3             CMP      R3,R4
+   \   00000014   0xD209             BCS      ??common_startup_1
+     57                      __VECTOR_RAM[n] = __VECTOR_TABLE[n];
+   \   00000016   0x4C1E             LDR      R4,??common_startup_0+0x4
+   \   00000018   0x2504             MOVS     R5,#+4
+   \   0000001A   0x435D             MULS     R5,R3,R5
+   \   0000001C   0x5964             LDR      R4,[R4, R5]
+   \   0000001E   0x4D1B             LDR      R5,??common_startup_0
+   \   00000020   0x2604             MOVS     R6,#+4
+   \   00000022   0x435E             MULS     R6,R3,R6
+   \   00000024   0x51AC             STR      R4,[R5, R6]
+   \   00000026   0x1C5B             ADDS     R3,R3,#+1
+   \   00000028   0xE7F1             B        ??common_startup_2
+     58              }
+     59              /* Point the VTOR to the new copy of the vector table */
+     60             // write_vtor((uint32)__VECTOR_RAM);
+     61          
+     62              /* Get the addresses for the .data section (initialized data section) */
+     63              #if (defined(CW))
+     64                  data_ram = (uint8 *)__DATA_RAM;
+     65          	data_rom = (uint8 *)__DATA_ROM;
+     66          	data_rom_end  = (uint8 *)__DATA_END; /* This is actually a RAM address in CodeWarrior */
+     67          	n = data_rom_end - data_ram;
+     68              #elif (defined(IAR))
+     69          	data_ram = __section_begin(".data");
+   \                     ??common_startup_1: (+1)
+   \   0000002A   0x4C1A             LDR      R4,??common_startup_0+0x8
+   \   0000002C   0x0022             MOVS     R2,R4
+     70          	data_rom = __section_begin(".data_init");
+   \   0000002E   0x4C1A             LDR      R4,??common_startup_0+0xC
+   \   00000030   0x0021             MOVS     R1,R4
+     71          	data_rom_end = __section_end(".data_init");
+   \   00000032   0x4C1A             LDR      R4,??common_startup_0+0x10
+   \   00000034   0x9401             STR      R4,[SP, #+4]
+     72          	n = data_rom_end - data_rom;
+   \   00000036   0x9C01             LDR      R4,[SP, #+4]
+   \   00000038   0x1A64             SUBS     R4,R4,R1
+   \   0000003A   0x0023             MOVS     R3,R4
+     73              #endif		
+     74          
+     75          #ifndef __CC_ARM
+     76          		
+     77          	/* Copy initialized data from ROM to RAM */
+     78          	while (n--)
+   \                     ??common_startup_3: (+1)
+   \   0000003C   0x001C             MOVS     R4,R3
+   \   0000003E   0x1E63             SUBS     R3,R4,#+1
+   \   00000040   0x2C00             CMP      R4,#+0
+   \   00000042   0xD004             BEQ      ??common_startup_4
+     79          		*data_ram++ = *data_rom++;
+   \   00000044   0x780C             LDRB     R4,[R1, #+0]
+   \   00000046   0x7014             STRB     R4,[R2, #+0]
+   \   00000048   0x1C49             ADDS     R1,R1,#+1
+   \   0000004A   0x1C52             ADDS     R2,R2,#+1
+   \   0000004C   0xE7F6             B        ??common_startup_3
+     80          	
+     81          	
+     82              /* Get the addresses for the .bss section (zero-initialized data) */
+     83              #if (defined(CW))
+     84          	bss_start = (uint8 *)__START_BSS;
+     85          	bss_end = (uint8 *)__END_BSS;
+     86              #elif (defined(IAR))
+     87          	bss_start = __section_begin(".bss");
+   \                     ??common_startup_4: (+1)
+   \   0000004E   0x4C14             LDR      R4,??common_startup_0+0x14
+   \   00000050   0x0020             MOVS     R0,R4
+     88          	bss_end = __section_end(".bss");
+   \   00000052   0x4C14             LDR      R4,??common_startup_0+0x18
+   \   00000054   0x9400             STR      R4,[SP, #+0]
+     89              #endif
+     90          	
+     91          
+     92              /* Clear the zero-initialized data section */
+     93              n = bss_end - bss_start;
+   \   00000056   0x9C00             LDR      R4,[SP, #+0]
+   \   00000058   0x1A24             SUBS     R4,R4,R0
+   \   0000005A   0x0023             MOVS     R3,R4
+     94              while(n--)
+   \                     ??common_startup_5: (+1)
+   \   0000005C   0x001C             MOVS     R4,R3
+   \   0000005E   0x1E63             SUBS     R3,R4,#+1
+   \   00000060   0x2C00             CMP      R4,#+0
+   \   00000062   0xD003             BEQ      ??common_startup_6
+     95                *bss_start++ = 0;
+   \   00000064   0x2400             MOVS     R4,#+0
+   \   00000066   0x7004             STRB     R4,[R0, #+0]
+   \   00000068   0x1C40             ADDS     R0,R0,#+1
+   \   0000006A   0xE7F7             B        ??common_startup_5
+     96          #endif
+     97          
+     98              /* Get addresses for any code sections that need to be copied from ROM to RAM.
+     99               * The IAR tools have a predefined keyword that can be used to mark individual
+    100               * functions for execution from RAM. Add "__ramfunc" before the return type in
+    101               * the function prototype for any routines you need to execute from RAM instead
+    102               * of ROM. ex: __ramfunc void foo(void);
+    103               */
+    104              #if (defined(IAR))
+    105            	uint8* code_relocate_ram = __section_begin("CodeRelocateRam");
+   \                     ??common_startup_6: (+1)
+   \   0000006C   0x4C0E             LDR      R4,??common_startup_0+0x1C
+    106          	uint8* code_relocate = __section_begin("CodeRelocate");
+   \   0000006E   0x4D0F             LDR      R5,??common_startup_0+0x20
+    107                  uint8* code_relocate_end = __section_end("CodeRelocate");
+   \   00000070   0x4E0F             LDR      R6,??common_startup_0+0x24
+    108          
+    109                  /* Copy functions from ROM to RAM */
+    110                  n = code_relocate_end - code_relocate;
+   \   00000072   0x1B77             SUBS     R7,R6,R5
+   \   00000074   0x003B             MOVS     R3,R7
+    111                  while (n--)
+   \                     ??common_startup_7: (+1)
+   \   00000076   0x001F             MOVS     R7,R3
+   \   00000078   0x1E7B             SUBS     R3,R7,#+1
+   \   0000007A   0x2F00             CMP      R7,#+0
+   \   0000007C   0xD004             BEQ      ??common_startup_8
+    112                    *code_relocate_ram++ = *code_relocate++;
+   \   0000007E   0x782F             LDRB     R7,[R5, #+0]
+   \   00000080   0x7027             STRB     R7,[R4, #+0]
+   \   00000082   0x1C6D             ADDS     R5,R5,#+1
+   \   00000084   0x1C64             ADDS     R4,R4,#+1
+   \   00000086   0xE7F6             B        ??common_startup_7
+    113              #endif
+    114          }
+   \                     ??common_startup_8: (+1)
+   \   00000088   0xBDF3             POP      {R0,R1,R4-R7,PC}  ;; return
+   \   0000008A   0xBF00             Nop      
+   \                     ??common_startup_0:
+   \   0000008C   0x........         DC32     __VECTOR_RAM
+   \   00000090   0x........         DC32     __VECTOR_TABLE
+   \   00000094   0x........         DC32     SFB(`.data`)
+   \   00000098   0x........         DC32     SFB(`.data_init`)
+   \   0000009C   0x........         DC32     SFE(`.data_init`)
+   \   000000A0   0x........         DC32     SFB(`.bss`)
+   \   000000A4   0x........         DC32     SFE(`.bss`)
+   \   000000A8   0x........         DC32     SFB(CodeRelocateRam)
+   \   000000AC   0x........         DC32     SFB(CodeRelocate)
+   \   000000B0   0x........         DC32     SFE(CodeRelocate)
+    115          /********************************************************************/
+
+   Maximum stack usage in bytes:
+
+   .cstack Function
+   ------- --------
+      28   common_startup
+
+
+   Section sizes:
+
+   Bytes  Function/Label
+   -----  --------------
+     180  common_startup
+
+ 
+ 180 bytes in section .text
+ 
+ 180 bytes of CODE memory
+
+Errors: none
+Warnings: none
