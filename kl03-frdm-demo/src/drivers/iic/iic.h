@@ -1,49 +1,30 @@
-/*
- * File:		iic.h
- * Purpose:     
- *
- * Notes:
- */
-
-#ifndef __IIC_H__
-#define __IIC_H__
-
-#include "common.h"
-
-/********************************************************************/
-
-#define i2c_DisableAck()       I2C0_C1 |= I2C0_C1_TXAK_MASK
-
-#define i2c_SendAck()          I2C0_SMB |= I2C0_SMB_FACK_MASK; \
-	                           I2C0_C1  &= ~I2C0_C1_TXAK_MASK     
-
-#define i2c_RepeatedStart()    I2C0_C1 |= I2C0_C1_RSTA_MASK;
-
-#define i2c_Start()            I2C0_C1 |= I2C0_C1_TX_MASK;\
-                               I2C0_C1 |= I2C0_C1_MST_MASK;\
-                               while((!(I2C0_S & I2C0_S_BUSY_MASK))       // wait until busy
-
-#define i2c_Stop()             I2C0_C1 &= ~I2C0_C1_MST_MASK;\
-                               I2C0_C1 &= ~I2C0_C1_TX_MASK;\
-                               while(I2C0_S & I2C0_S_BUSY_MASK)        // wait until not busy
-
-#define i2c_EnterRxMode()      I2C0_C1 &= ~I2C0_C1_TX_MASK;\
-                               I2C0_C1 &= ~I2C0_C1_TXAK_MASK
-
-#define i2c_Wait()             while((I2C0_S & I2C0_S_IICIF_MASK)==0); \
-                               I2C0_S |= I2C0_S_IICIF_MASK
-
-#define i2c_write_byte(data)   I2C0_D = data
+#ifndef __HAL_I2C_H__
+#define __HAL_I2C_H__
 
 
-extern void Init_I2C(void);
-extern void I2C_Start(void);
-extern void I2C_Stop(void);
-extern void I2C_RepeatStart(void);
-extern void I2C_Delay(void);
-extern void I2C_CycleWrite(uint8 bout);
-extern uint8 I2C_CycleRead(uint8 ack);
 
-/********************************************************************/
+/* ----------------------------------------------------------------------------
+   -- I2C
+   ---------------------------------------------------------------------------- */
 
-#endif /* __IIC_H__ */
+
+void i2c_set_tx_mode(I2C_MemMapPtr p);
+void i2c_set_rx_mode(I2C_MemMapPtr p);
+void i2c_set_slave_mode(I2C_MemMapPtr p);
+void i2c_set_master_mode(I2C_MemMapPtr p);
+void i2c_give_nack(I2C_MemMapPtr p);
+void i2c_give_ack(I2C_MemMapPtr p);
+void i2c_repeated_start(I2C_MemMapPtr p);
+void i2c_write_byte(I2C_MemMapPtr p, uint8 data);
+uint8 i2c_read_byte(I2C_MemMapPtr p);
+void i2c_start(I2C_MemMapPtr p);
+void i2c_stop(I2C_MemMapPtr p);
+void i2c_wait(I2C_MemMapPtr p);
+uint16 i2c_get_ack(I2C_MemMapPtr p);
+void hal_i2c_init(I2C_MemMapPtr p);
+void hal_i2c_deinit(I2C_MemMapPtr p);
+#define I2C_READ  1
+#define I2C_WRITE 0
+
+#endif //__HAL_I2C_H__
+

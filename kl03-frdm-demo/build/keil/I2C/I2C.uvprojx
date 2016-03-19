@@ -149,7 +149,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>14</TargetSelection>
+          <TargetSelection>6</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -163,7 +163,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>PEMicro\Pemicro_ArmCortexInterface.dll</Driver>
+            <Driver>Segger\JL2CM3.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>KEIL FREEDOM CMSIS</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\src\projects\platinum;..\..\..\src\common;..\..\..\src\cpu;..\..\..\src\cpu\headers;..\..\..\src\drivers\lptmr;..\..\..\src\drivers\mcg;..\..\..\src\drivers\pmc;..\..\..\src\drivers\rcm;..\..\..\src\drivers\smc;..\..\..\src\drivers\uart;..\..\..\src\drivers\cmp;..\..\..\src\platforms;..\..;..\startup_s</IncludePath>
+              <IncludePath>..\..\..\src\projects\iic;..\..\..\src\common;..\..\..\src\cpu;..\..\..\src\cpu\headers;..\..\..\src\drivers\lptmr;..\..\..\src\drivers\mcg;..\..\..\src\drivers\pmc;..\..\..\src\drivers\rcm;..\..\..\src\drivers\smc;..\..\..\src\drivers\uart;..\..\..\src\drivers\iic;..\..\..\src\drivers\mma8451;..\..\..\src\drivers\cmp;..\..\..\src\platforms;..\..;..\startup_s</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -420,7 +420,7 @@
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\projects\lptmr\main.c</FilePath>
+              <FilePath>..\..\..\src\projects\iic\main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -523,9 +523,14 @@
               <FilePath>..\..\..\src\drivers\mcg\mcg_lite.c</FilePath>
             </File>
             <File>
-              <FileName>lptmr.c</FileName>
+              <FileName>iic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\src\drivers\lptmr\lptmr.c</FilePath>
+              <FilePath>..\..\..\src\drivers\iic\iic.c</FilePath>
+            </File>
+            <File>
+              <FileName>mma8451.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\src\drivers\mma8451\mma8451.c</FilePath>
             </File>
           </Files>
         </Group>
